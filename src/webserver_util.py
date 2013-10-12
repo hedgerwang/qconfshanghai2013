@@ -6,19 +6,30 @@ import execjs
 import json
 import time
 import os
+import re
+
+RE_PRE_SPACE_START = re.compile('(?P<tag><pre[^>]*>)\s*')
+RE_PRE_SPACE_END = re.compile('\s*(?P<tag></pre>)')
+RE_DEFER = re.compile('(?P<before><[a-z]+)\s+defer\s*(?P<after>[^>]*>)')
+RE_CODE = re.compile(r"<code>(?P<code>.*?)</code>", re.DOTALL)
+
+def code_escape(match):
+  return '<code>\n%s\n\n</code>' % cgi.escape(match.group('code'))
 
 HTML = '''
 <!doctype html>
 <html>
   <head>
+    <base target="_new" />
     <meta charset="utf-8">
     <title>Slide</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/node_modules/reveal.js/css/reveal.min.css" />
-    <link rel="stylesheet" href="/node_modules/reveal.js/css/theme/default.css" id="theme" />
+    <link rel="stylesheet" href="/node_modules/reveal.js/css/reveal.css" />
+    <link rel="stylesheet" href="/node_modules/reveal.js/css/theme/serif.css" id="theme" />
     <link rel="stylesheet" href="/node_modules/reveal.js/lib/css/zenburn.css" />
+    <link rel="stylesheet" href="/src/style.css" />
     <!--[if lt IE 9]>
     <script src="/node_modules/reveal.js/lib/js/html5shiv.js"></script>
     <![endif]-->
@@ -80,19 +91,23 @@ _supported_file_type = {
   'jpg': 'image/jpg',
   'js': 'application/javascript',
   'png': 'image/png',
+  'woff': 'application/x-font-woff',
+  'ttf': 'application/octet-stream',
+  'svg': 'image/svg+xml'
 }
 
 _text_cache = {}
 
 def read_text(path, text_cache = None) :
-  if _text_cache and path in _text_cache:
-    return _text_cache[path]
+  key = '_%s_%s' % (path , str(os.path.getmtime(path)))
+  if key in _text_cache:
+    return _text_cache[key]
 
   try :
     f = open(path)
     content = f.read()
     f.close()
-    _text_cache[path] = content
+    _text_cache[key] = content
     return content
   except Exception as e :
     error('Unable to read file', path)
@@ -121,7 +136,7 @@ def handle_get(path, query_params):
     mime  = 'text/html'
     body = read_text(slide_path)
     sections = []
-    for section in body.split('###'):
+    for section in body.split('==='):
       section = section.strip()
       if section:
         if section.find('>>>') > -1:
@@ -131,8 +146,13 @@ def handle_get(path, query_params):
           section = '\n\n\n'.join(levels)
         sections.append('<section><!--slide-->\n' + section + '\n</section>')
 
+    body = '\n\n\n'.join(sections)
+    body = RE_PRE_SPACE_START.sub(r'\g<tag><code>', body)
+    body = RE_PRE_SPACE_END.sub(r'</code>\g<tag>', body)
+    body = RE_CODE.sub(code_escape, body)
+    body = RE_DEFER.sub(r'\g<before> class="fragment" \g<after>', body)
     content = HTML % {
-      'body': '\n\n\n'.join(sections)
+      'body': body
     }
   elif mime and os.path.isfile('.' + path):
     content = read_text('.' + path)

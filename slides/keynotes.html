@@ -1,81 +1,311 @@
-###
-
 <h1>跨终端的Web</h1>
-<h3>
-  Hedger Wang
-</h3>
 
-###
+===
 
 <h2>關於</h2>
 <ul>
-  <li class="fragment">前端工程師</li>
-  <li class="fragment">Facebook</li>
-  <li class="fragment">Google</li>
-  <li class="fragment">Yahoo</li>
+  <li defer>Hedger Wang</li>
+  <li defer>前端工程師</li>
+  <li defer>2011 - Facebook</li>
+  <li defer>2008 - Google</li>
+  <li defer>2004 - Yahoo</li>
 </ul>
 
-###
+===
 
-<h2>從跨瀏覽器到跨終端</h2>
+<h2>更多終端</h2>
+
+===
+
+<a class="image"
+   href="http://opensignal.com/reports/fragmentation-2013">
+  <img src="images/adnroid_device_fragmentation.png" border="0" />
+</a>
+<small>Android Fragmentation Visualized (July 2013)</small>
+
+===
+
+<h2>更多差異</h2>
+
+===
+
+<p>
+  <a href="http://www.tera-wurfl.com/explore/search.php?action=browse">
+    WURFL
+  </a>
+</p>
+
+===
+
+<h2>從Web到原生應用</h2>
+
+===
+
+<h2>Web應用</h2>
+<h2 defer>寬度</h2>
 <ul>
-  <li class="fragment">更多終端</li>
-  <li class="fragment">更大差異</li>
+  <li defer>覆蓋率</li>
+  <li defer>多樣化實驗</li>
 </ul>
 
 <!--
-  # 跨终端的Web
-
-# 關於Hedger
-
-# 從跨瀏覽器到跨終端
-- 更多終端
-- 更大差異
-
-# 持續地向Web應用演進
-- 安全
-- 方便
-
-# Native
-- 流暢
-
-# Web的挑戰
-- 用戶端工具
-- 用戶端性能
-- 用戶端相容性
-
-# 前端 >= 用戶端
-
-# 前端發展
-
-# 未來/標準化
-- Common JS
-- Ecma Script
-- Polyfill
-
-# 元件化
-- (HTML + CSS + JS) = (Data + View + Controller)
-- Web Components
-- React
-- Angular
-- Polymer
-
-# 並行化
-- GPU
-- Threaded compositing
-
-# 客制化
-- 動態合成
-- 動態部署
-- 動態展示
-
-# 私有標準?
-- Dart
-- TypeScript
-
-# Build better culture
+- Feature Parity
+- Experimental Features
+- e.g. Google Map, Google+, Facebook
 -->
 
+===
+
+<h2>原生應用</h2>
+<h2 defer>深度</h2>
+<ul>
+  <li defer>流暢度</li>
+  <li defer>使用量</li>
+</ul>
+
+<!--
+  瀏覽器的編程模型還是90年代流行的單進程單線程 (single process single thread)，
+  但原生實現(比如用Object C)的APP可以用多線程。 這一點帶來的作用是致命的。 移動端編寫APP，
+  可以使用多個線程， 第一個線程， 被稱作主線程(main thread)， 編程的第一原則是don't do
+  heavy work on main thread。 通常只讓它處理UI事件等， 其他重度的工作讓其他背景線程來做。
+  但瀏覽器只有一個線程， 所有的事情都是它干。移動瀏覽器編程一上來就破了第一原則。 在台式機上，
+  瀏覽器編程還沒有太多問題， 因為夠快(此外， 桌面瀏覽器對於Web Worker的支持也比較完善);
+  但在移動端， 這個弊端很明顯。 我來舉個例子， 比如你在用瀏覽器看朋友的照片，
+  你發的評論被發到服務器端， 此時你接著用手指往下拉屏; 此時， 服務器端返回信息， 評論發佈成功，
+  瀏覽器中唯一的線程可能停止處理屏幕滾動(scrolling)而來處理服務器的返回信息，
+  由於移動設備的處理器(尤其單進程瀏覽器只能用上單核， 即使是多核手機!)和內存(處於省電原因使用
+  低耗電的DDR1， 這一點和現在PC使用的DDR3相差甚遠)的不給力， 完全可能造成滾動處理的不連續。
+  通常手機的刷新率是60MHZ， 即每一幀不超過15ms; 如果處理的延時大大超過15ms，
+  那麼就會出現跳幀， 肉眼就能看出來。 這是交互操作(比如拉動， 滾動等)很多的APP，
+  如果是由HTML5實現， 出現拉動的時候停在那裡一個很重要的原因。 所以， 如果你的APP是相對靜態的，
+  不需要很多對於照片， 多點觸摸， 多向拉動的處理， 那完全可以用HTML5來實現; 如果不是，
+  比如信息流的展示， 遊戲等等， 還是乖乖的用原生的去實現。
+-->
+
+===
+
+<blockquote>
+  &ldquo;
+  最大的錯誤就是在HTML5上下注太多
+  &rdquo;
+</blockquote>
+<small>馬克‧扎克伯格, 9/11/2012</small>
+
+===
+
+<blockquote cite="http://venturebeat.com/2013/04/17/linkedin-mobile-web-breakup">
+  &ldquo;
+  毋庸置疑地，我們將會從HTML5轉向原生應用
+  &rdquo;
+</blockquote>
+<small>LinkedIn</small>
+
+===
+
+<blockquote cite="https://blog.twitter.com/2012/improving-performance-twittercom">
+  &ldquo;
+  將頁面呈現的工作從客戶端移回到服務器端後，客戶端感受到的效能將會顯著地改善
+  &rdquo;
+</blockquote>
+<small>Twitter</small>
+
+===
+
+<h2>反思</h2>
+
+===
+
+<h2>Web應用 用戶端</h3>
+<ul>
+  <li defer>工具</li>
+  <li defer>效能</li>
+  <li defer>相容性</li>
+</ul>
+
+===
+
+<h2>
+前端 &gt;= 用戶端
+</h2>
 
 
+===
 
+<h2>JavaScipt的應用與演化</h2>
+
+===
+
+<h2>去框架化</h2>
+
+===
+
+<h2>過去</h2>
+
+<pre defer>
+
+// google closure
+goog.require('goog.dom.classes');
+goog.dom.classes.add(element, 'goog');
+
+</pre>
+
+
+<pre defer>
+
+// yui
+YAHOO.util.Dom.addClass(element, 'yui');
+
+</pre>
+
+<pre defer>
+
+// jQuery
+$(element).addClass('jQuery');
+
+</pre>
+
+<pre defer>
+
+// dojo
+dojo.addClass(element), 'dojo');
+
+</pre>
+
+===
+
+<h2>現在</h2>
+
+<pre>
+// ES6, CommonJS
+var addClass = require('addClass');
+addClass(element, 'red');
+</pre>
+
+===
+
+<h2>ES6標準化</h2>
+
+===
+
+<h2>過去</h2>
+
+<pre>
+// google closure
+goog.inherits(ChildClass, ParentClass);
+</pre>
+
+<pre>
+// yui
+Y.extend(ChildClass, ParentClass)
+</pre>
+
+<pre>
+// jQuery
+$.extend(ChildClass.prototype, new ParentClass)
+</pre>
+
+<pre>
+// dojo
+dojo.declare("ChildClass", ParentClass);
+</pre>
+
+===
+
+<h2>現在</h2>
+
+<pre>
+class ChildClass extends ParentClass {
+
+}
+</pre>
+
+===
+
+<h2>未來（進行中）</h2>
+
+<pre defer>
+  var a1 = ['apple', 'banana', 'carrot'];
+</pre>
+<pre defer>
+  var a2 = a.map(function(s){ return s.length });
+</pre>
+<pre defer>
+  var a3 = a.map( s => s.length );
+</pre>
+
+===
+
+<h2>填充碼(Polyfill)</h2>
+<!--
+polyfill 模擬標準 API，所以能夠以一種面向所有瀏覽器未來的方式針對這些 API 進行開發，最終目標是：一旦對這些 API 的支持變成絕對大多數，則可以方便地去掉 polyfill，無需做任何額外工作。
+-->
+===
+
+<h2>過去</h2>
+<pre>
+// google closure
+goog.now();
+
+// jQuery
+$.now();
+
+// YUI
+Y.now()
+</pre>
+
+===
+
+<h2>現在</h2>
+<pre>
+Date.now()
+</pre>
+
+===
+
+<h2>ECMAScript5</h2>
+<pre defer>Array.isArray;</pre>
+<pre defer>Array.prototype.map;</pre>
+<pre defer>String.prototype.trim</pre>
+<pre defer>Function.prototype.bind</pre>
+<pre defer>JSON.parse</pre>
+<a defer href="https://developer.mozilla.org/en-US/docs/tag/ECMAScript5">
+  ...
+</a>
+
+===
+
+<h2>UI 组件化</h2>
+
+<ul>
+  <li defer>HTML + CSS + JS</li>
+  <li defer>Data + View + Controller</li>
+</p>
+
+===
+
+<h2>過去</h2>
+
+<pre>
+<div
+  class="goog-custom-button goog-inline-block"
+  role="button"
+  tabindex="0">
+  <div class="goog-inline-block goog-custom-button-outer-box">
+    <div class="goog-inline-block goog-custom-button-inner-box">
+      My Button
+    </div>
+  </div>
+</div>
+</pre>
+
+<a href="http://closure-library.googlecode.com/git/closure/goog/demos/button.html">
+  goog.ui.CustomButton
+</a>
+
+===
+
+<h2>現在</h2>
+
+<pre>
+<CustomButton label="My Button"/>
+</pre>

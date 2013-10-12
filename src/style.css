@@ -1,0 +1,9 @@
+body {
+  background: #fff !important;
+}
+
+.reveal pre code {
+  font-size: 1.375em;
+  line-height: 1.1;
+  padding: 0 1em;
+}

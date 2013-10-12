@@ -45,8 +45,8 @@ def should_refresh():
     # webserver_util_update_time = webserver_util_update_time_2
     return True
 
-  print 'app_config_update_time_2=' + str(app_config_update_time_2)
-  print 'webserver_util_update_time_2' + str(webserver_util_update_time_2)
+  # print 'app_config_update_time_2=' + str(app_config_update_time_2)
+  # print 'webserver_util_update_time_2' + str(webserver_util_update_time_2)
   return False
 
 class WebHandler(BaseHTTPRequestHandler) :
