@@ -10,11 +10,26 @@ import re
 
 RE_PRE_SPACE_START = re.compile('(?P<tag><pre[^>]*>)\s*')
 RE_PRE_SPACE_END = re.compile('\s*(?P<tag></pre>)')
-RE_DEFER = re.compile('(?P<before><[a-z]+)\s+defer\s*(?P<after>[^>]*>)')
+RE_XMP_START = re.compile('<xmp')
+RE_XMP_END = re.compile('</xmp>')
+RE_DEFER = re.compile('(?P<before><[a-z][a-z0-9]*)\s+defer\s*(?P<after>[^>]*>)')
 RE_CODE = re.compile(r"<code>(?P<code>.*?)</code>", re.DOTALL)
+
+
 
 def code_escape(match):
   return '<code>\n%s\n\n</code>' % cgi.escape(match.group('code'))
+
+THEMES =  [
+  'beige',
+  'default',
+  'moon',
+  'night',
+  'serif',
+  'simple',
+  'sky',
+  'solarized',
+]
 
 HTML = '''
 <!doctype html>
@@ -27,7 +42,7 @@ HTML = '''
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/node_modules/reveal.js/css/reveal.css" />
-    <link rel="stylesheet" href="/node_modules/reveal.js/css/theme/serif.css" id="theme" />
+    <link rel="stylesheet" href="/node_modules/reveal.js/css/theme/default.css" id="theme" />
     <link rel="stylesheet" href="/node_modules/reveal.js/lib/css/zenburn.css" />
     <link rel="stylesheet" href="/src/style.css" />
     <!--[if lt IE 9]>
@@ -147,6 +162,8 @@ def handle_get(path, query_params):
         sections.append('<section><!--slide-->\n' + section + '\n</section>')
 
     body = '\n\n\n'.join(sections)
+    body = RE_XMP_START.sub('<pre ', body)
+    body = RE_XMP_END.sub('</pre>', body)
     body = RE_PRE_SPACE_START.sub(r'\g<tag><code>', body)
     body = RE_PRE_SPACE_END.sub(r'</code>\g<tag>', body)
     body = RE_CODE.sub(code_escape, body)

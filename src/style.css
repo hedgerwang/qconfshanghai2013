@@ -1,9 +1,33 @@
+/*
 body {
   background: #fff !important;
 }
+*/
 
 .reveal pre code {
   font-size: 1.375em;
   line-height: 1.1;
   padding: 0 1em;
+}
+
+.bricks {
+  white-space: nowrap;
+}
+
+.bricks > em,
+.bricks > a,
+.bricks > a:link,
+.bricks > a:visited,
+.bricks > a:hover,
+.bricks > a:active {
+  background: #000;
+  border-radius: 0.8em;
+  box-shadow: 0 0 0.3em #000;
+  color: inherit;
+  display: inline-block;
+  font-size: 0.8em;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0.2em;
+  padding: 0.5em;
 }

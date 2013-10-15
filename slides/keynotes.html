@@ -1,4 +1,4 @@
-<h1>跨终端的Web</h1>
+<h1>跨终端的Web設計模式/h1>
 
 ===
 
@@ -30,6 +30,7 @@
 ===
 
 <p>
+  <img src="images/wurfl.png" border="0" />
   <a href="http://www.tera-wurfl.com/explore/search.php?action=browse">
     WURFL
   </a>
@@ -42,11 +43,7 @@
 ===
 
 <h2>Web應用</h2>
-<h2 defer>寬度</h2>
-<ul>
-  <li defer>覆蓋率</li>
-  <li defer>多樣化實驗</li>
-</ul>
+<h3 defer>寬度</h3>
 
 <!--
 - Feature Parity
@@ -57,11 +54,7 @@
 ===
 
 <h2>原生應用</h2>
-<h2 defer>深度</h2>
-<ul>
-  <li defer>流暢度</li>
-  <li defer>使用量</li>
-</ul>
+<h3 defer>深度</h3>
 
 <!--
   瀏覽器的編程模型還是90年代流行的單進程單線程 (single process single thread)，
@@ -118,8 +111,8 @@
 <h2>Web應用 用戶端</h3>
 <ul>
   <li defer>工具</li>
-  <li defer>效能</li>
   <li defer>相容性</li>
+  <li defer>效能</li>
 </ul>
 
 ===
@@ -131,7 +124,7 @@
 
 ===
 
-<h2>JavaScipt的應用與演化</h2>
+<h2>工具 : JavaScipt</h2>
 
 ===
 
@@ -141,97 +134,97 @@
 
 <h2>過去</h2>
 
-<pre defer>
+<xmp defer>
 
 // google closure
 goog.require('goog.dom.classes');
 goog.dom.classes.add(element, 'goog');
 
-</pre>
+</xmp>
 
 
-<pre defer>
+<xmp defer>
 
 // yui
 YAHOO.util.Dom.addClass(element, 'yui');
 
-</pre>
+</xmp>
 
-<pre defer>
+<xmp defer>
 
 // jQuery
 $(element).addClass('jQuery');
 
-</pre>
+</xmp>
 
-<pre defer>
+<xmp defer>
 
 // dojo
 dojo.addClass(element), 'dojo');
 
-</pre>
+</xmp>
 
 ===
 
 <h2>現在</h2>
 
-<pre>
+<xmp>
 // ES6, CommonJS
 var addClass = require('addClass');
 addClass(element, 'red');
-</pre>
+</xmp>
 
 ===
 
-<h2>ES6標準化</h2>
+<h2>標準化</h2>
 
 ===
 
 <h2>過去</h2>
 
-<pre>
+<xmp defer>
 // google closure
 goog.inherits(ChildClass, ParentClass);
-</pre>
+</xmp>
 
-<pre>
+<xmp defer>
 // yui
 Y.extend(ChildClass, ParentClass)
-</pre>
+</xmp>
 
-<pre>
+<xmp  defer>
 // jQuery
 $.extend(ChildClass.prototype, new ParentClass)
-</pre>
+</xmp>
 
-<pre>
+<xmp defer>
 // dojo
 dojo.declare("ChildClass", ParentClass);
-</pre>
+</xmp>
 
 ===
 
 <h2>現在</h2>
 
-<pre>
+<xmp>
 class ChildClass extends ParentClass {
 
 }
-</pre>
+</xmp>
 
 ===
 
 <h2>未來（進行中）</h2>
 
-<pre defer>
+<xmp defer>
   var a1 = ['apple', 'banana', 'carrot'];
-</pre>
-<pre defer>
+</xmp>
+<xmp defer>
   var a2 = a.map(function(s){ return s.length });
-</pre>
-<pre defer>
+</xmp>
+<xmp defer>
   var a3 = a.map( s => s.length );
-</pre>
+</xmp>
 
 ===
 
@@ -242,41 +235,65 @@ polyfill 模擬標準 API，所以能夠以一種面向所有瀏覽器未來的�
 ===
 
 <h2>過去</h2>
-<pre>
+<xmp defer>
 // google closure
 goog.now();
+</xmp>
 
+<xmp defer>
 // jQuery
 $.now();
+</xmp>
 
+<xmp defer>
 // YUI
 Y.now()
-</pre>
+</xmp>
 
 ===
 
 <h2>現在</h2>
-<pre>
+<xmp>
 Date.now()
-</pre>
+</xmp>
 
 ===
 
 <h2>ECMAScript5</h2>
-<pre defer>Array.isArray;</pre>
-<pre defer>Array.prototype.map;</pre>
-<pre defer>String.prototype.trim</pre>
-<pre defer>Function.prototype.bind</pre>
-<pre defer>JSON.parse</pre>
+<xmp defer>Array.isArray;</xmp>
+<xmp defer>Array.prototype.map;</xmp>
+<xmp defer>String.prototype.trim</xmp>
+<xmp defer>Function.prototype.bind</xmp>
+<xmp defer>JSON.parse</xmp>
 <a defer href="https://developer.mozilla.org/en-US/docs/tag/ECMAScript5">
   ...
 </a>
 
 ===
 
-<h2>UI 组件化</h2>
+<h2>例外</h2>
+
+<div class="bricks">
+  <a href="https://www.dartlang.org/">Dart</a>
+  <a href="http://coffeescript.org/">CoffeeScript</a>
+  <a href="http://www.typescriptlang.org/">TypeScript</a>
+</div>
+
+===
+
+<h2>重述要點</h2>
+<ul>
+  <li>模塊化</li>
+  <li>標準化</li>
+  <li defer>開源化</li>
+</ul>
+
+===
+
+<h2>相容性 : UI</h2>
 
 <ul>
+  <li defer>Web</li>
   <li defer>HTML + CSS + JS</li>
   <li defer>Data + View + Controller</li>
 </p>
@@ -285,7 +302,7 @@ Date.now()
 
 <h2>過去</h2>
 
-<pre>
+<xmp>
 <div
   class="goog-custom-button goog-inline-block"
   role="button"
@@ -296,7 +313,7 @@ Date.now()
     </div>
   </div>
 </div>
-</pre>
+</xmp>
 
 <a href="http://closure-library.googlecode.com/git/closure/goog/demos/button.html">
   goog.ui.CustomButton
@@ -306,6 +323,219 @@ Date.now()
 
 <h2>現在</h2>
 
-<pre>
-<CustomButton label="My Button"/>
-</pre>
+<xmp>
+<CustomButton label="My Button" />
+</xmp>
+
+===
+
+<h2>封装化</h2>
+
+<xmp>
+<UserLoginForm redirectURI={$redirectURI}/>
+</xmp>
+
+<ul defer>
+  <li>
+    <a href="http://www.chromium.org/blink/web-components">
+      Web Components
+    </a>
+  </li>
+</ul>
+
+===
+
+<h2>組合化</h2>
+
+<xmp>
+// <UserLoginForm />
+
+<fieldset>
+  <input type="hidden" value={$redirectURI} />
+  <input type="text" name="id" />
+  <input type="password" name="pwd" />
+  <CustomButton label="登入" type="submit" />
+</fieldset>
+</xmp>
+
+<p defer>優先使用（對象）組合，而非（類）繼承</p>
+
+===
+
+<h2>實例</h2>
+
+<div class="bricks">
+  <a href="http://www.w3.org/TR/2013/WD-components-intro-20130606/">
+    Web Components
+  </a>
+  <br />
+  <a href="https://www.dartlang.org/articles/web-ui/#components">
+    Dart Web Components
+  </a>
+  <a href="http://docs.angularjs.org/guide/directive">
+    Angular Directive
+  </a>
+  <br />
+  <a href="http://www.polymer-project.org/">
+    Polymer
+  </a>
+  <a href="https://hacks.mozilla.org/2013/08/introducing-brick-minimal-markup-web-components-for-faster-app-development/">
+    Brick
+  </a>
+  <br />
+  <a href="https://github.com/facebook/xhp">
+    XHP
+  </a>
+  <a href="http://facebook.github.io/react/">
+    React
+  </a>
+</div>
+
+===
+
+<h2>自適應化</h2>
+
+===
+
+<xmp>
+<img src="icon.png" />
+</xmp>
+
+<xmp defer>
+// HiRes Display
+<img src="http://f.com/icon.2x.png" alt="icon" />
+</xmp>
+
+<xmp defer>
+// WebView in Native
+<img src="file://fcom/icon.2x.png" alt="icon" />
+</xmp>
+
+<xmp defer>
+// Sprited Image
+<i class="sprited_icon_ico">icon</em>
+</xmp>
+
+<xmp defer>
+// Low speed connection
+<a href="http://f.com/icon.png">icon</a>
+</xmp>
+
+===
+
+<xmp>
+// HTML5
+<span>
+  <input placeholder="type something" type="text"/>
+</span>
+</xmp>
+
+<xmp defer>
+// HTML4-
+<span>
+  <span class="placeholder">type something</span>
+  <input type="text" />
+</span>
+</xmp>
+
+===
+
+<h2>聲明化</h2>
+<p>Declarative</p>
+
+===
+
+<h2>過去</h2>
+
+<xmp>
+var form = new Form();
+var textField = new TextField();
+var submitButton = new SubmitButton("submit");
+form.appendChild(textField);
+form.appendChild(submitButton);
+submitButton.onClick = onSubmitClick;
+</xmp>
+
+===
+
+<h2>現在</h2>
+<xmp>
+<Form>
+  <TextField />
+  <SubmitButton label="submit" onClick="onSubmitClick" />
+</Form>
+</xmp>
+
+===
+
+<h2>併行化</h2>
+
+===
+
+<h2>過去</h2>
+
+<div class="bricks">
+  <em defer>Component 1</em><br />
+  <em defer>Component 2</em><br />
+  <em defer>Component 3</em><br />
+  <em defer>Component 4</em>
+</div>
+
+===
+
+<h2>現在</h2>
+<div class="bricks">
+  <em>Component 1</em>
+  <em>Component 2</em>
+  <em>Component 3</em>
+  <em>Component 4</em>
+</div>
+
+===
+
+<h2>實例</h2>
+<div class="bricks">
+  <em>Webkit Threaded Compositing</em>
+  <em>PHP Generators</em>
+</div>
+
+===
+
+<h2>重述要點</h2>
+<ul>
+  <li>封裝化</li>
+  <li>組合化</li>
+  <li>自適應化</li>
+  <li>聲明化</li>
+  <li>併行化</li>
+</ul>
+
+===
+
+<h2>效能 </h2>
+
+===
+
+<p>Web Server</p>
+<p>+</p>
+<p>Web Client</p>
+
+===
+
+<p>Native View</p>
+<p>+</p>
+<p>Web View</p>
+
+===
+
+<h2>制度與文化</h2>
+
+<img src="images/fb_posters.png" />
+
+
+===
+
+<h2>謝謝</h2>
+
+
+

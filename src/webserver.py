@@ -80,11 +80,15 @@ class WebHandler(BaseHTTPRequestHandler) :
 def main() :
   try :
     # port must not be smaller than 1024
+
     server = HTTPServer(('', app_config.PORT), WebHandler)
+
     print 'started httpserver...\n\nhttp://%s:%s' % (
       get_local_ip_address('www.google.com'),
       app_config.PORT
     )
+    print 'http://127.0.0.1:' + str(app_config.PORT)
+
     server.serve_forever()
   except KeyboardInterrupt :
     print '^C received, shutting down server'
