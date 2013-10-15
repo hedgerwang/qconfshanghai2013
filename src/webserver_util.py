@@ -91,9 +91,10 @@ HTML_NOT_FOUND = '''
 <!doctype html>
 <html>
 <body>
-  <h1>%(path)s not found</h1>
+  <h1>View Slides</h1>
   <ul>
-   <li><a href="/keynotes">keynotes</a></ii>
+    <li><a href="/keynotes">keynotes</a></ii>
+  </ul>
 </body>
 </html>
 '''

@@ -4,6 +4,10 @@ body {
 }
 */
 
+.reveal h1 {
+  line-height: 137.5%;
+}
+
 .reveal pre code {
   font-size: 1.375em;
   line-height: 1.1;
