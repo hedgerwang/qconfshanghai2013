@@ -1,0 +1,530 @@
+Cross-Platform Web Development
+
+=1==============================================================================
+
+About Me
+
+  Hedger Wang
+  Frontend Engineer
+  2011 - Facebook
+  2008 - Google
+  2004 - Yahoo
+
+=2==============================================================================
+
+More Devices with More Platform
+
+=3==============================================================================
+
+  Android Fragmentation Visualized (July 2013)
+  Link: http://opensignal.com/reports/fragmentation-2013
+
+=4==============================================================================
+
+More Features Variation
+
+=5==============================================================================
+
+  See WURFL Explorer
+  Link: http://www.tera-wurfl.com/explore/search.php?action=browse
+
+
+=6==============================================================================
+
+Web Application vs Native Application
+
+# Notes #
+The main programming model inside the browser is still single-threaded model
+start started since the beginning in 1990s .
+
+However, the native implementation (such as using Object C) of the APP can
+use multithreading, which makes applications siginificantly better.
+
+When a application is built natively, you can use multiple threads. In
+programming, the first principle is don't do heavy work on main thread. Usually
+only let it handle UI events, other heavy work should be done by that other background threads.
+
+But the browser can only run only one thread, everything needs to be done on teh main thread. Therefore, programming a app inside the web browser would
+basically break  on the first principle.
+
+On the desktop, browser-based programs usually don't have too many problems
+with this issue, because browsers are fast enough (in addition, the desktop
+browser with the Web Workers can even do better).
+
+However, in the mobile browser, this single thead process model is obviously disadvantageous. Let me give you an example, say you use a browser to see
+friends in photos, you made the comment is sent to the server, then you pull
+down the screen with your finger and then; at this time, the server returns information, comments publishing success. Browser's main thread may stop
+processing screen scrolling instead of processing the data that the server to
+returns.
+  
+Since mobile device processors and memory are not powerful enough, it may
+result in non-continuous (smooth) srolling experience.
+  
+=7==============================================================================
+
+Web Application
+
+# Notes #
+Broader reach in shorter term
+
+=8==============================================================================
+
+Native Application
+
+# Notes
+Deeper reach in longer term
+
+=9==============================================================================
+
+  “The biggest mistake we made as a company was betting too much on HTML5”
+  Quotes from Zuck
+
+# Notes:
+Explains why HTML5 is simply not good enough as of now.
+
+For example, Android 2.x default browser is just not very good.
+I wouldn’t want to create a cutting-edge HTML5 app on Android 2.
+
+Also, developer can’t use the web to emulate native. Developer should use the
+web in a webby way. which I guess means a simpler interface with less
+flourishes for now.
+
+=10=============================================================================
+
+  “We have definitely shifted from HTML5 to native."
+  Quotes from LinkedIn
+
+#Notes:
+Another example from LinkedIn.com
+See http://venturebeat.com/2013/04/17/linkedin-mobile-web-breakup/
+
+=11=============================================================================
+
+“To improve the twitter.com experience for everyone, we’ve been working to take
+ back control of our front-end performance by moving the rendering to the
+ server."
+
+# Notes:
+Another example from Twitter.com
+See https://blog.twitter.com/2012/improving-performance-twittercom
+
+=12=============================================================================
+
+Retrospect
+
+=13=============================================================================
+
+Web Application
+
+  * Tools
+  * Compatibility
+  * Performance
+
+# Notes:
+Talk about the major apsects that developers should continously focus on
+to build better web app.
+
+=14=============================================================================
+
+Frontend >= Client Side
+
+# Notes:
+Talk about that the main focus will be the general frontend solutions, not just
+the client-side technologies.
+
+=15=============================================================================
+
+Tool : JavaScipt
+
+=16=============================================================================
+
+Use Micro-framework
+
+=17=============================================================================
+
+Past:
+
+  // google closure
+  goog.require('goog.dom.classes');
+  goog.dom.classes.add(element, 'goog');
+
+  // yui
+  YAHOO.util.Dom.addClass(element, 'yui');
+
+  // jQuery
+  $(element).addClass('jQuery');
+
+  // dojo
+  dojo.addClass(element), 'dojo');
+
+
+# Notes:
+Show some example codes to demostrate how to update class names with
+different JavaScipt frameworks.
+
+=18=============================================================================
+
+Present:
+
+  // ES6, CommonJS
+  var addClass = require('addClass');
+  addClass(element, 'red');
+
+# Notes:
+Show an example code to demostrate how to update DOM class names with
+micro-framework (e.g CommonJS)
+
+=19=============================================================================
+
+Standardization
+
+=20=============================================================================
+
+Past:
+
+  // google closure
+  goog.inherits(ChildClass, ParentClass);
+
+  // yui
+  Y.extend(ChildClass, ParentClass)
+
+  // jQuery
+  $.extend(ChildClass.prototype, new ParentClass)
+
+  // dojo
+  dojo.declare("ChildClass", ParentClass);
+
+# Notes:
+Show some example codes to demostrate how to create Class with
+different JavaScipt frameworks.
+
+=21=============================================================================
+
+Present:
+
+  class ChildClass extends ParentClass {
+
+  }
+
+# Notes:
+Show some example codes to demostrate how to create Class with the standard
+ECMA syntax.
+
+=22=============================================================================
+
+More example:
+
+  var a1 = ['apple', 'banana', 'carrot'];
+
+  var a2 = a.map(function(s){ return s.length });
+
+  var a3 = a.map( s => s.length );
+
+=23=============================================================================
+
+Polyfill
+
+# Notes:
+Explain the conecpt of polyfill.
+In web development, a polyfill (or polyfiller) is downloadable code which
+provides facilities that are not built into a web browser.
+
+=24=============================================================================
+
+Past:
+
+  // google closure
+  goog.now();
+
+  // jQuery
+  $.now();
+
+  // YUI
+  Y.now()
+
+# Notes:
+Show some example codes to demostrate how to get current time with different JavaScipt frameworks.
+
+=25=============================================================================
+
+Present:
+
+  Date.now()
+
+# Notes:
+Show some example codes to demostrate how to get current time with polyfill.
+
+=26=============================================================================
+
+More example:
+
+  ECMAScript5
+    Array.isArray;
+    Array.prototype.map;
+    String.prototype.trim
+    Function.prototype.bind
+    JSON.parse
+
+  Link: https://developer.mozilla.org/en-US/docs/tag/ECMAScript5
+
+=27=============================================================================
+
+More examples:
+
+  * Dart
+  * CoffeeScript
+  * TypeScript
+
+# Notes:
+Introduce other differnet languages that also do similiar interesting things.
+
+=28=============================================================================
+
+Recap:
+
+  * Modularization (micro-framework)
+  * Standardization
+  * Embrace open-source tools
+
+=29=============================================================================
+
+Responsive UI Components:
+
+  * Web
+  * HTML + CSS + JS
+  * Data + View + Controller
+
+# Notes:
+Talk about the concept of UI components.
+
+=30=============================================================================
+
+Past:
+
+  <div
+    class="goog-custom-button goog-inline-block"
+    role="button"
+    tabindex="0">
+    <div class="goog-inline-block goog-custom-button-outer-box">
+      <div class="goog-inline-block goog-custom-button-inner-box">
+        My Button
+      </div>
+    </div>
+  </div>
+  goog.ui.CustomButton
+
+# Notes:
+Show sample codes that show how web UI has been built.
+
+=31=============================================================================
+
+Present:
+
+  <CustomButton label="My Button" ></CustomButton>
+
+# Notes:
+Show sample codes that show how web UI can be built with less code.
+
+=32=============================================================================
+
+Encapsulation
+
+  <UserLoginForm redirectURI={$redirectURI}></UserLoginForm>
+  Web Components
+
+# Notes:
+Talk about Web Component and explain why using component is a good way
+of encapsulation logics of interaction and data processing.
+
+=33=============================================================================
+
+Composition
+
+  // <UserLoginForm ></UserLoginForm>
+
+  <fieldset>
+    <input type="hidden" value={$redirectURI} />
+    <input type="text" name="id" />
+    <input type="password" name="pwd" />
+    <CustomButton label="登入" type="submit" ></CustomButton>
+  </fieldset>
+
+# Notes:
+Explain why we'd prefer composition over inheritance to build components.
+
+=34=============================================================================
+
+Examples:
+
+  * Web Components: http://www.w3.org/TR/2013/WD-components-intro-20130606
+  * Dart Web Components: https://www.dartlang.org/articles/web-ui/#components
+  * Angular Directive: http://docs.angularjs.org/guide/directive
+  * Polymer: ttp://www.polymer-project.org/
+  * Brick: http://mzl.la/H4RScP
+  * XHP: https://github.com/facebook/xhp
+  * React: http://facebook.github.io/react/
+
+# Notes:
+Real world examples that build components for the web.
+
+=35=============================================================================
+
+Responsiveness
+
+=36=============================================================================
+
+    <img src="icon.png" />
+
+    // HiRes Display
+    <img src="http://f.com/icon.2x.png" alt="icon" />
+
+    // WebView in Native
+    <img src="file://fcom/icon.2x.png" alt="icon" />
+
+    // Sprited Image
+    <i class="sprited_icon_ico">icon</em>
+
+    // Low speed connection
+    <a href="http://f.com/icon.png">icon</a>
+
+# Notes:
+Show exmaples of how a web image can be rendered differently across different
+environments.
+
+=37=============================================================================
+
+  // HTML5
+  <span>
+    <input placeholder="type something" type="text"/>
+  </span>
+
+  // HTML4-
+  <span>
+    <span class="placeholder">type something</span>
+    <input type="text" />
+  </span>
+
+# Notes:
+Another example to show.
+
+=38=============================================================================
+
+Declaration
+
+=39=============================================================================
+
+Past:
+
+  var form = new Form();
+  var textField = new TextField();
+  var submitButton = new SubmitButton("submit");
+  form.appendChild(textField);
+  form.appendChild(submitButton);
+  submitButton.onClick = onSubmitClick;
+
+# Notes:
+Show example codes that demostrate how to build a simple Form Component.
+
+=40=============================================================================
+
+Present:
+
+  <Form>
+    <TextField ></TextField>
+    <SubmitButton label="submit" onClick="onSubmitClick" ></SubmitButton>
+  </Form>
+
+
+# Notes:
+Show example codes that demostrate how to build a simple Form Component with
+more readable declarative sytax that is more also language-agnostic.
+
+=41=============================================================================
+
+Examples:
+
+  Angular: http://mikecr.it/ramblings/angularjss-declarative-markup
+  React: http://facebook.github.io/react/
+
+# Notes:
+Show the actual syntax from these different frameworks.
+
+=42=============================================================================
+
+Parallelization
+
+=43=============================================================================
+
+Past:
+
+  Component 1
+  Component 2
+  Component 3
+  Component 4
+
+# Notes:
+Explain why sequential rendering can be a bad idea.
+
+=44=============================================================================
+
+Present:
+
+  Component 1 Component 2 Component 3 Component 4
+
+# Notes:
+Explain why parallel rendering can be a good idea.
+=45=============================================================================
+
+Examples:
+
+  * Webkit Threaded Compositing
+  * PHP Generators
+
+# Notes:
+Show some real world examples.
+
+=46=============================================================================
+
+Recap:
+
+  * Encapsulation
+  * Composition
+  * Responsiveness
+  * Declaration
+  * Parallelization
+
+=47=============================================================================
+
+Performance
+
+=48=============================================================================
+
+  Web Server + Web Client
+
+# Notes:
+Talk about the trade-off of using Server vs Browser technologies.
+
+=49=============================================================================
+
+  Native View + Web View
+
+# Notes:
+Talk about the trade-off of using Native vs Web technologies.
+
+=50=============================================================================
+
+Move Fast and Break Things
+
+# Notes:
+The last but not least important rule for building large scale web application
+across multiple plarforms.
+
+=51=============================================================================
+
+
+  “We’re just getting started. And there’s a lot of important work ahead."
+
+
+=52=============================================================================
+
+Thanks
