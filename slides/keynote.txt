@@ -38,27 +38,28 @@ The main programming model inside the browser is still single-threaded model
 start started since the beginning in 1990s .
 
 However, the native implementation (such as using Object C) of the APP can
-use multithreading, which makes applications siginificantly better.
+use multithreading, which makes applications significantly better.
 
 When a application is built natively, you can use multiple threads. In
 programming, the first principle is don't do heavy work on main thread. Usually
 only let it handle UI events, other heavy work should be done by that other background threads.
 
-But the browser can only run only one thread, everything needs to be done on teh main thread. Therefore, programming a app inside the web browser would
+But the browser can only run only one thread, everything needs to be done on
+the main thread. Therefore, programming a app inside the web browser would
 basically break  on the first principle.
 
 On the desktop, browser-based programs usually don't have too many problems
 with this issue, because browsers are fast enough (in addition, the desktop
 browser with the Web Workers can even do better).
 
-However, in the mobile browser, this single thead process model is obviously disadvantageous. Let me give you an example, say you use a browser to see
+However, in the mobile browser, this single thread process model is obviously disadvantageous. Let me give you an example, say you use a browser to see
 friends in photos, you made the comment is sent to the server, then you pull
 down the screen with your finger and then; at this time, the server returns information, comments publishing success. Browser's main thread may stop
 processing screen scrolling instead of processing the data that the server to
 returns.
   
 Since mobile device processors and memory are not powerful enough, it may
-result in non-continuous (smooth) srolling experience.
+result in non-continuous (smooth) scrolling experience.
   
 =7==============================================================================
 
@@ -121,7 +122,7 @@ Web Application
   * Performance
 
 # Notes:
-Talk about the major apsects that developers should continously focus on
+Talk about the major aspects that developers should continuously focus on
 to build better web app.
 
 =14=============================================================================
@@ -159,7 +160,7 @@ Past:
 
 
 # Notes:
-Show some example codes to demostrate how to update class names with
+Show some example codes to demonstrate how to update class names with
 different JavaScipt frameworks.
 
 =18=============================================================================
@@ -171,7 +172,7 @@ Present:
   addClass(element, 'red');
 
 # Notes:
-Show an example code to demostrate how to update DOM class names with
+Show an example code to demonstrate how to update DOM class names with
 micro-framework (e.g CommonJS)
 
 =19=============================================================================
@@ -195,7 +196,7 @@ Past:
   dojo.declare("ChildClass", ParentClass);
 
 # Notes:
-Show some example codes to demostrate how to create Class with
+Show some example codes to demonstrate how to create Class with
 different JavaScipt frameworks.
 
 =21=============================================================================
@@ -207,7 +208,7 @@ Present:
   }
 
 # Notes:
-Show some example codes to demostrate how to create Class with the standard
+Show some example codes to demonstrate how to create Class with the standard
 ECMA syntax.
 
 =22=============================================================================
@@ -225,7 +226,7 @@ More example:
 Polyfill
 
 # Notes:
-Explain the conecpt of polyfill.
+Explain the concept of polyfill.
 In web development, a polyfill (or polyfiller) is downloadable code which
 provides facilities that are not built into a web browser.
 
@@ -243,7 +244,7 @@ Past:
   Y.now()
 
 # Notes:
-Show some example codes to demostrate how to get current time with different JavaScipt frameworks.
+Show some example codes to demonstrate how to get current time with different JavaScipt frameworks.
 
 =25=============================================================================
 
@@ -252,7 +253,7 @@ Present:
   Date.now()
 
 # Notes:
-Show some example codes to demostrate how to get current time with polyfill.
+Show some example codes to demonstrate how to get current time with polyfill.
 
 =26=============================================================================
 
@@ -276,7 +277,7 @@ More examples:
   * TypeScript
 
 # Notes:
-Introduce other differnet languages that also do similiar interesting things.
+Introduce other different languages that also do similar interesting things.
 
 =28=============================================================================
 
@@ -334,7 +335,7 @@ Encapsulation
 
 # Notes:
 Talk about Web Component and explain why using component is a good way
-of encapsulation logics of interaction and data processing.
+of encapsulation logic of interaction and data processing.
 
 =33=============================================================================
 
@@ -359,7 +360,7 @@ Examples:
   * Web Components: http://www.w3.org/TR/2013/WD-components-intro-20130606
   * Dart Web Components: https://www.dartlang.org/articles/web-ui/#components
   * Angular Directive: http://docs.angularjs.org/guide/directive
-  * Polymer: ttp://www.polymer-project.org/
+  * Polymer: http://www.polymer-project.org/
   * Brick: http://mzl.la/H4RScP
   * XHP: https://github.com/facebook/xhp
   * React: http://facebook.github.io/react/
@@ -388,7 +389,7 @@ Responsiveness
     <a href="http://f.com/icon.png">icon</a>
 
 # Notes:
-Show exmaples of how a web image can be rendered differently across different
+Show examples of how a web image can be rendered differently across different
 environments.
 
 =37=============================================================================
@@ -423,7 +424,7 @@ Past:
   submitButton.onClick = onSubmitClick;
 
 # Notes:
-Show example codes that demostrate how to build a simple Form Component.
+Show example codes that demonstrate how to build a simple Form Component.
 
 =40=============================================================================
 
@@ -436,7 +437,7 @@ Present:
 
 
 # Notes:
-Show example codes that demostrate how to build a simple Form Component with
+Show example codes that demonstrate how to build a simple Form Component with
 more readable declarative sytax that is more also language-agnostic.
 
 =41=============================================================================
@@ -451,7 +452,7 @@ Show the actual syntax from these different frameworks.
 
 =42=============================================================================
 
-Parallelization
+Concurrency
 
 =43=============================================================================
 
@@ -491,7 +492,7 @@ Recap:
   * Composition
   * Responsiveness
   * Declaration
-  * Parallelization
+  * Concurrency
 
 =47=============================================================================
 
@@ -517,13 +518,11 @@ Move Fast and Break Things
 
 # Notes:
 The last but not least important rule for building large scale web application
-across multiple plarforms.
+across multiple platforms.
 
 =51=============================================================================
 
-
   “We’re just getting started. And there’s a lot of important work ahead."
-
 
 =52=============================================================================
 
