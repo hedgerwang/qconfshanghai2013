@@ -1,0 +1,421 @@
+<h1>React</h1>
+
+===
+
+<h2>關於</h2>
+<ul>
+  <li defer>Hedger Wang</li>
+  <li defer>前端工程師</li>
+  <li defer>2011 - Facebook</li>
+  <li defer>2008 - Google</li>
+  <li defer>2004 - Yahoo</li>
+</ul>
+
+===
+
+<h2>Component</h2>
+
+===
+
+<h2>Web Component規範</h2>
+
+===
+
+<h2>React初探</h2>
+
+<p defer>UI構建庫</p>
+
+===
+
+<h2>React Component</h2>
+
+<ul>
+  <li defer>UI的表現邏輯層 (View)</li>
+  <li defer>構造UI的基本單位</li>
+  <li defer>打造UI的工具箱</li>
+</ul>
+
+===
+
+<xmp>
+<div class="Hello">
+  Hello, Hedger
+</div>
+</xmp>
+
+<!--
+Say that we'd want to have an UI like this:
+-->
+
+===
+
+<xmp>
+<Hello name="Hedger" />
+</xmp>
+
+<!--
+Ideally, we want a component <Hello />
+-->
+
+<xmp defer>
+var Hello = require('Hello');
+React.renderComponent(
+  <Hello name="Hedger" />, document.body
+);
+</xmp>
+
+<!--
+And some JS to render it.
+-->
+
+===
+
+<xmp>
+var Hello = React.createClass({
+  render: function() {
+    return (
+      <div className="Hello">
+        Hello {this.props.name}
+      </div>
+    );
+  }
+});
+</xmp>
+
+<!--
+Here is the defination of <Hello />
+-->
+
+===
+
+<h2>JSX語法</h2>
+
+<xmp defer>
+<Hello name="Hedger" />
+</xmp>
+
+<xmp defer>
+Hello({name: 'Hedger'});
+</xmp>
+
+<!--
+- JSX (Javascript XML syntax transform) 是使用XML語法編寫Javascript的一套解析工具；
+- React和JSX是兩個完全不相關的技術，但JSX是React的一個很重要的思想。
+- React建議使用JSX（但非必要）
+-->
+===
+
+<h2>使用JSX</h2>
+
+===
+
+<h2>聲明式代碼</h2>
+
+<xmp defer>
+var table = document.createElement('table');
+var tr = document.createElement('tr');
+var td = document.createElement('td');
+var text = document.createTextNode('some data');
+td.appendChild(text);
+td = document.createElement('td');
+text = document.createTextNode('some more data');
+td.appendChild(text);
+tr.appendChild(td);
+table.appendChild(tr);
+</xmp>
+
+<xmp defer>
+<table>
+  <tr>
+    <td>some data</td>
+    <td>some data</td>
+  </tr>
+</table>
+</xmp>
+
+===
+
+<h2>免除XSS攻擊</h2>
+
+<xmp defer>
+var name = '<script>alert("XSS");</script>';
+var div = <div>{name}</div>;
+</xmp>
+
+<xmp defer>
+<div>&lt;script&gt;alert(&quot;XSS&quot;);&lt;/script&gt;</div>
+</xmp>
+
+===
+
+<h2>JavaScript語法</h2>
+
+<xmp defer>
+var items = ['apple', 'banana', 'cranberry'];
+var list = (
+  <ul className={items.length ? '' : 'empty'}>
+    {items.map(function(item){return <li>{item}</li>})}
+  </ul>
+);
+</xmp>
+
+<!--
+This is not another language that you need to lean
+-->
+
+===
+
+<h2>可構建高級復合組件</h2>
+
+<xmp>
+var UserCard = React.createClass({
+  render: function() {
+     return (
+       <div>
+         <UserPhoto userID={this.props.id} />
+         <UserProfile userID={this.props.id} />
+       </div>
+     );
+  }
+});
+</xmp>
+
+<!--
+定義更多Component
+按照前面的組件設計，繼續定義Component
+-->
+
+===
+
+<h2>Rendering</h2>
+
+<ul>
+  <li defer>在過去，頁面內容是直接從服務端輸出的</li>
+  <li defer>只要重新整理頁面，就可以取得更新的UI</li>
+  <li defer>對用戶端瀏覽器來說，只要負責顯示就好</li>
+</ul>
+
+===
+
+<p>讓事情變得更簡單</p>
+<p>讓UI能夠反應數據的狀態</p>
+
+<!--
+Web 最早在70年代專門為大型機所設計. 應用服務器渲染完整個屏幕，然後在網絡上發送給終端.
+無論用戶做什麼事情，服務器都會重新渲染整個屏幕. 在過去的十幾年中，這個模式在 Web 上工作得很好.
+它成就了 LAMP, Rails, Django, PHP 等技術。
+-->
+
+===
+
+<h2>反應性 / Reactive Rendering</h2>
+
+<ul>
+  <li defer>
+  一開始React會根據初始數據render整個Component
+  </li>
+
+  <li defer>
+  當數據更新時，React會重新render整個Component
+  </li>
+
+  <li defer>
+  不需要複雜的"Data Binding"
+  </li>
+</ul>
+
+<!--
+在客戶端使用Javascript 構建應用程序. 這些應用程序的界面是固定的. 它們不重新載入頁面. 它們具有「反應性」（reactive）: 改變會從某個客戶端立即顯示到所有人的屏幕上.
+-->
+
+<!--
+"數據綁定"是一種把數據綁定到一種用戶界面元素（控件）的通用機制
+-->
+
+===
+
+<xmp>
+var Counter = React.createClass({
+  render: function()
+    return <div>{this.props.count}</div>;
+  }
+});
+
+var ii = 0, body = document.body;
+var render = function() {
+  React.renderComponent(<Counter count={ii++} />, body);
+};
+
+setInterval(render, 100);
+</xmp>
+
+===
+
+<h2>當數據更新時...</h2>
+<p defer>重新render整個Component?</p>
+
+<xmp defer>
+<div id="page">
+  <table>
+    <tr>
+      <td>1 + 1 = </td>
+      <td id="result">?</td>
+    </tr>
+  </table>
+</div>
+</xmp>
+
+===
+<h3>經由DOM操作來Rendering...</h3>
+<xmp>
+page.innerHTML = (
+  '<table>' +
+  '  <tr>' +
+  '    <td>1 + 1 = </td>' +
+  '    <td id="result">2</td>' +
+  '  </tr>' +
+  '</table>'
+);
+</xmp>
+
+<ul>
+<li defer>成本高</li>
+<li defer>效益低</li>
+<li defer>UI狀態容易丟失</li>
+</ul>
+
+<!--
+That seems expensive.
+And doesn’t it mess up form fields and scroll position
+-->
+
+===
+<!-- So here is the solution from React -->
+
+<h3>減少DOM層級的操作</h3>
+<xmp>
+result.innerHTML = '2';
+</xmp>
+
+===
+
+<h2>虛擬的DOM Tree</h2>
+
+<ul>
+<li defer>用JavaScript打造的虛擬DOM Tree</li>
+<li defer>避免Reflow</li>
+<li defer>支持Events管理</li>
+</ul>
+
+===
+
+<h2>當Component的數據改變時....</h2>
+
+<ul>
+<li defer>產生一個新的Virtual DOM Subtree</li>
+<li defer>比較目前的Virtual DOM Subtree</li>
+<li defer>記錄下要更新的數據差異</li>
+<li defer>進行批量更新(Batched Update)</li>
+</ul>
+
+<!--
+render 出的內容，是根據數據來的。
+當組件的屬性數據變化時，render 函數會自動重新評估並更新DOM，React保證DOM一直是保持最新數據
+（作用和MVVM框架中自動binding 類似）
+-->
+
+===
+
+<h2>高效的Rendering</h2>
+
+<ul>
+<li defer>高效的JavaScript</li>
+<li defer>批量處理DOM API的讀寫操作</li>
+<li defer>更新速度可達到60fps</li>
+</ul>
+
+===
+
+<h2>Virtual DOM</h2>
+
+<p>可在任何執行JavaScript的環境下運作</p>
+
+<div class="bricks">
+  <em defer>Node JS</em>
+  <em defer>PHP - V8js</em>
+</div>
+<div class="bricks">
+  <em defer>Python - PyReact</em>
+  <em defer>Web Worker</em>
+</div>
+
+===
+
+<h2>React的基本分層架構</h2>
+
+<ul class="blocks">
+  <li defer>Data Input Interface</li>
+  <li defer>Components Composition</li>
+  <li defer>Rendering</li>
+</ul>
+
+<!--So it works like a game-->
+
+===
+
+<h2>Events</h2>
+<xmp>
+// <Hello name="Hedger" />
+
+var Hello = React.createClass({
+  render: function() {
+    return <button onClick={this._sayHi}>click</button>;
+  },
+
+  _sayHi: function(event) {
+    event.preventDefault();
+    alert('Hello, ' + this.props.name);
+  }
+});
+</xmp>
+
+<!--
+- 底層，React 使用高階事件委派來達成高效的性能
+- 自動綁定回調
+- AbstractEvent 對象是一個序列化的JSON，所以React應用能夠在web workers 上執行。
+-->
+
+===
+
+
+<h2>參考資源</h2>
+
+<ul>
+  <li>
+    <a href="http://facebook.github.io/react">React JS</a>
+  </li>
+  <li>
+    <a href="http://facebook.github.io/react/support.html">
+    Community Support
+    </a>
+  </li>
+</ul>
+
+===
+
+DEMO
+
+- Todo List (Basic Model Handling)
+- Simple Clock (Server Rendering)
+- Wolfenstein3D-react (Game- Like Interface)
+- React VS Angular (Performance)
+
+===
+
+
+
+
+
+
+
+
