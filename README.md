@@ -12,7 +12,7 @@ git clone https://github.com/hedgerwang/qconfshanghai2013.git
 cd qconfshanghai2013
 
 # install dependencies
-npm install reveal.js
+npm install
 
 # start the web server
 sh run_webserver.sh

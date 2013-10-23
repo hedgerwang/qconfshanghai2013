@@ -92,8 +92,9 @@ HTML_NOT_FOUND = '''
 <body>
   <h1>View Slides</h1>
   <ul>
-    <li><a href="/keynotes">keynotes</a></ii>
-    <li><a href="/reactjs">reactjs</a></ii>
+    <li><a href="/keynotes">keynotes</a></li>
+    <li><a href="/reactjs">reactjs</a></li>
+    <li><a href="/statics/index.html">statics</a></li>
   </ul>
 </body>
 </html>
@@ -109,7 +110,8 @@ _supported_file_type = {
   'png': 'image/png',
   'woff': 'application/x-font-woff',
   'ttf': 'application/octet-stream',
-  'svg': 'image/svg+xml'
+  'svg': 'image/svg+xml',
+  'ogg': 'audio/ogg',
 }
 
 _text_cache = {}
@@ -145,7 +147,10 @@ def get_request_file_type(path):
 def handle_get(path, query_params):
   content = ''
   file_type = get_request_file_type(path)
-  mime = _supported_file_type.get(file_type)
+  mime = 'text/plain'
+  if file_type:
+    mime = _supported_file_type.get(file_type)
+  
   slide_path = './slides/' + path + '.html'
 
   if os.path.isfile(slide_path):
@@ -179,7 +184,8 @@ def handle_get(path, query_params):
       'path': cgi.escape(path)
     }
     mime = 'text/html'
-
+  
+  print '>>> (%s,  %s, %s)' % (file_type, mime, path)
   return {
     'mime': mime,
     'content': content

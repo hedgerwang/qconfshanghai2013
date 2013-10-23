@@ -1,0 +1,17 @@
+{
+  "name": "qconfshanghai2013",
+  "version": "0.0.1",
+  "description": "sldies and examples for qconfshanghai2013",
+  "dependencies": {
+    "reveal.js": "git://github.com/hakimel/reveal.js.git"
+  },
+  "author": {
+    "name": "Hedger Wang",
+    "email": "hedgerwang@gmail.com",
+    "url": "http://github.com/hedgerwang"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "Apache-2.0"
+}

@@ -7,4 +7,8 @@ slides/*.txt
 # Node Modules
 node_modules
 
+# External files
+statics/react-js-fiddler
+statics/wolfenstein3D-react
+
 
