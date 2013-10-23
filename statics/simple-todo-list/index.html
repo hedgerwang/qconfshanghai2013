@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />  
+<script type='text/javascript' src="react-0.5.0.js"></script>
+<script type="text/javascript" src="JSXTransformer-0.5.0.js"></script>
+<script type="text/jsx">
+/** @jsx React.DOM */
+
+var TodoList = React.createClass({
+  render: function() {
+    var createItem = function(itemText) {
+      return <li>{itemText}</li>;
+    };
+    return <ul>{this.props.items.map(createItem)}</ul>;
+  }
+});
+
+var TodoApp = React.createClass({
+  getInitialState: function() {
+    return {items: [], text: ''};
+  },
+
+  onInput: function(e) {
+    this.setState({text: e.target.value});
+  },
+  
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var nextItems = this.state.items.concat([this.state.text]);
+    var nextText = '';
+    this.setState({items: nextItems, text: nextText});
+  },
+  
+  render: function() {
+    return (
+      <div>
+        <h3>TODO</h3>
+        <TodoList items={this.state.items} />
+        <form onSubmit={this.handleSubmit}>
+          <input onInput={this.onInput} value={this.state.text} />
+          <button>{'Add #' + (this.state.items.length + 1)}</button>
+        </form>
+      </div>
+    );
+  }
+});
+
+React.renderComponent(<TodoApp />, document.body);
+</script>
+</head>
+<body>
+  <script src="react-js-fiddle-integration.js"></script>
+</body>
+</html>
+
