@@ -2,7 +2,6 @@
 from time import gmtime, strftime
 import calendar, datetime
 import cgi
-import execjs
 import json
 import time
 import os
@@ -94,6 +93,7 @@ HTML_NOT_FOUND = '''
   <h1>View Slides</h1>
   <ul>
     <li><a href="/keynotes">keynotes</a></ii>
+    <li><a href="/reactjs">reactjs</a></ii>
   </ul>
 </body>
 </html>
