@@ -42,7 +42,8 @@ use multithreading, which makes applications significantly better.
 
 When a application is built natively, you can use multiple threads. In
 programming, the first principle is don't do heavy work on main thread. Usually
-only let it handle UI events, other heavy work should be done by that other background threads.
+only let it handle UI events, other heavy work should be done by that other 
+background threads.
 
 But the browser can only run only one thread, everything needs to be done on
 the main thread. Therefore, programming a app inside the web browser would
@@ -52,9 +53,11 @@ On the desktop, browser-based programs usually don't have too many problems
 with this issue, because browsers are fast enough (in addition, the desktop
 browser with the Web Workers can even do better).
 
-However, in the mobile browser, this single thread process model is obviously disadvantageous. Let me give you an example, say you use a browser to see
+However, in the mobile browser, this single thread process model is obviously 
+disadvantageous. Let me give you an example, say you use a browser to see
 friends in photos, you made the comment is sent to the server, then you pull
-down the screen with your finger and then; at this time, the server returns information, comments publishing success. Browser's main thread may stop
+down the screen with your finger and then; at this time, the server returns 
+information, comments publishing success. Browser's main thread may stop
 processing screen scrolling instead of processing the data that the server to
 returns.
   
@@ -244,7 +247,8 @@ Past:
   Y.now()
 
 # Notes:
-Show some example codes to demonstrate how to get current time with different JavaScipt frameworks.
+Show some example codes to demonstrate how to get current time with different 
+JavaScipt frameworks.
 
 =25=============================================================================
 

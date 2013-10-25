@@ -4,12 +4,26 @@ body {
 }
 */
 
-
-
 .reveal pre code {
   font-size: 1.375em;
   line-height: 1.1;
   padding: 0 1em;
+}
+
+.reveal li {
+  font-size: 130%;
+  line-height: 160%;  
+  list-style: none;
+  border-left: solid 0.3em #eee;
+  padding-left: 1em;
+  margin: 0.3em 0;
+  border-radius: 0.3em;
+  color: #444;
+}
+
+.reveal h2,
+.reveal h3 {
+  margin-bottom: 0.4em;
 }
 
 .bricks {
@@ -25,7 +39,7 @@ body {
   background: #000;
   border-radius: 0.8em;
   box-shadow: 0 0 0.3em #000;
-  color: inherit;
+  color: #fff;
   display: inline-block;
   font-size: 0.8em;
   font-style: normal;
@@ -36,6 +50,7 @@ body {
 
 .blocks > li,
 .blocks {
+  color: #fff;
   display: block;
   list-style: none;
   margin: 0;
@@ -55,3 +70,4 @@ body {
   padding: 0.5em 2em;
   text-align: center;
 }
+

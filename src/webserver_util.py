@@ -41,7 +41,7 @@ HTML = '''
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/node_modules/reveal.js/css/reveal.css" />
-    <link rel="stylesheet" href="/node_modules/reveal.js/css/theme/default.css" id="theme" />
+    <link rel="stylesheet" href="/node_modules/reveal.js/css/theme/simple.css" id="theme" />
     <link rel="stylesheet" href="/node_modules/reveal.js/lib/css/zenburn.css" />
     <link rel="stylesheet" href="/src/style.css" />
     <!--[if lt IE 9]>
@@ -51,7 +51,7 @@ HTML = '''
 
   <body>
     <div class="reveal">
-      <div class="slides">
+      <div class="%(name)s slides">
       %(body)s
       </div>
     </div>
@@ -175,7 +175,8 @@ def handle_get(path, query_params):
     body = RE_CODE.sub(code_escape, body)
     body = RE_DEFER.sub(r'\g<before> class="fragment" \g<after>', body)
     content = HTML % {
-      'body': body
+      'body': body,
+      'name': cgi.escape(path.replace('/', ''))
     }
   elif mime and os.path.isfile('.' + path):
     content = read_text('.' + path)
