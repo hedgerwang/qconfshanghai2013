@@ -1,0 +1,46 @@
+body, input, button {
+ font-family: arial;
+ font-size: 13px
+}
+
+body {
+  background: #000;
+}
+
+.TodoApp {
+  background: #fff;
+  border: solid 1px #efefef;
+  border-radius: 16px;
+	display: inline-block;
+	padding: 16px;
+  margin: 10px;
+}
+
+.TodoApp h2 {
+  font-size: 1em;
+  margin: 0 0 20px 0;
+}
+
+.TodoApp ul {
+  list-style: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.TodoApp li {
+  padding: 8px 4px;
+  border-top: dotted 1px #ccc;
+}
+
+.TodoApp form {
+  margin: 0;
+}
+
+.TodoApp input {
+  padding: 4px;
+}
+
+.TodoApp button {
+  padding: 8px 16px;
+}

@@ -1,10 +1,12 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />  
+<link href="style.css" rel="stylesheet" type="text/css" />
 <script type='text/javascript' src="react-0.5.0.js"></script>
 <script type="text/javascript" src="JSXTransformer-0.5.0.js"></script>
+</head>
+<body>
 <script type="text/jsx">
 /** @jsx React.DOM */
 
@@ -28,15 +30,17 @@ var TodoApp = React.createClass({
   
   handleSubmit: function(e) {
     e.preventDefault();
-    var nextItems = this.state.items.concat([this.state.text]);
-    var nextText = '';
-    this.setState({items: nextItems, text: nextText});
+    if (this.state.text) {
+      var nextItems = this.state.items.concat([this.state.text]);
+      var nextText = '';
+      this.setState({items: nextItems, text: nextText});
+    }
   },
   
   render: function() {
     return (
-      <div>
-        <h3>TODO</h3>
+      <div className="TodoApp">
+        <h2>TODO</h2>
         <TodoList items={this.state.items} />
         <form onSubmit={this.handleSubmit}>
           <input onInput={this.onInput} value={this.state.text} />
@@ -49,9 +53,9 @@ var TodoApp = React.createClass({
 
 React.renderComponent(<TodoApp />, document.body);
 </script>
-</head>
-<body>
-  <script src="react-js-fiddle-integration.js"></script>
+
+
+<script src="react-js-fiddle-integration.js"></script>
 </body>
 </html>
 
