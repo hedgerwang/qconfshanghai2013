@@ -1,0 +1,491 @@
+    # React #
+
+=1==============================================================================
+
+# About #
+
+  * Hedger Wang
+  * Senior UI Engineer
+  * 2011 - Facebook
+  * 2008 - Google
+  * 2004 - Yahoo
+
+# Notes # 
+Self introduction.
+
+=2==============================================================================
+
+# Component #
+
+# Notes # 
+Start with talking about the component on the web.
+
+=3==============================================================================
+
+# From HTML Markup to Component Markup #
+
+  ```
+  <div class="DateRange">
+    From : <input  
+            type="text" 
+            name="date-start" 
+            value="2013/1/1" />
+    To: <input 
+            type="text" 
+            name="date-end" 
+            value="2013/1/31" />
+  </div>  
+  ```  
+
+  ```
+  <DateRange 
+    from="2013/1/1" 
+    to="2013/1/31" 
+    name="date" 
+  />  
+  ```  
+
+# Notes # 
+Show some pseudo HTML markups that demostrates the difference between the HTML 
+markup and the Component markup. Apparently, the component markup looks much 
+simpler and clear.
+
+
+=4==============================================================================
+
+# Web Component #
+
+* W3C Draft  
+* Google Polymer
+* Mozilla X-Tag
+* <del>MicroSoft HTML Component</del>
+ 
+
+
+# Notes #
+Give background knowledge about the recent status of web component.
+ 
+=5==============================================================================
+
+# React Component #
+
+  * The presentation and logic layout of the component (View)
+  * Building block for UI
+  * UI Tookkit
+
+# Notes #
+Then move onto the React Component part.
+React is a JavaScript library for creating user interfaces by Facebook and
+Instagram. Many people choose to think of React as the V in MVC.
+
+=6==============================================================================
+
+  ```
+  <div class="Hello">
+    Hello, Hedger
+  </div>
+  ```
+
+# Notes #
+Show a basic example of a "Hello" component with HTML Markup.
+
+=7==============================================================================
+
+  ```
+  <Hello name="Hedger" />
+  ```
+
+# Notes #
+Show a basic example of a "Hello" component with (conceptual) Component Markup.
+
+  ```
+  React.renderComponent(
+    Hello({name: 'Hedger'}),  
+    document.body
+  );
+  ```
+
+# Notes #
+Present the pseudo JavaScript code that renders the component with the React
+library.
+
+  ```
+  var Hello = React.createClass({
+    render: function() {
+      return React.DOM.div(
+        {className: 'Hello'},
+        'Hello ' + this.props.name
+      );
+    }
+  });
+  ```
+
+# Notes #
+Present the pseudo JavaScript code that defines the component with the React
+library.
+
+
+=8==============================================================================
+
+# JSX #
+
+# Notes #
+Introduce JSX.  
+JSX is a JavaScript XML syntax transform recommended for use with React.
+
+=9==============================================================================
+
+  ```
+  <Hello name="Hedger" />
+  ```
+
+  ```
+  React.renderComponent(
+    <Hello name="Hedger" />,  
+    document.body
+  );
+  ```
+
+  ```
+  var Hello = React.createClass({
+    render: function() {
+      return (
+        <div className="Hello">
+          Hello {this.props.name}
+        </div>
+      );
+    }
+  });
+  ```
+
+# Notes #
+Show pseudo code of using JSX for the Hello component. 
+
+=10=============================================================================
+
+# Why JSX #
+
+# Notes #
+We recommend using JSX for many reasons:  
+* It's easier to visualize the structure of the DOM.
+* Designers are more comfortable making changes.
+* It's familiar for those who have used MXML or XAML.
+  
+=11=============================================================================
+
+# Declarative Syntax #
+
+  ```
+  var table = document.createElement('table');
+  var tr = document.createElement('tr');
+  var td = document.createElement('td');
+  var text = document.createTextNode('some data');
+  td.appendChild(text);
+  td = document.createElement('td');
+  text = document.createTextNode('some more data');
+  td.appendChild(text);
+  tr.appendChild(td);
+  table.appendChild(tr);
+  ```
+
+  ```
+  <table>
+    <tr>
+      <td>some data</td>
+      <td>some data</td>
+    </tr>
+  </table>
+  ```
+
+# Notes #
+* It's easier to visualize the structure of the DOM.
+* Designers are more comfortable making changes.
+* It's familiar for those who have used MXML or XAML.
+ 
+
+=12=============================================================================
+
+# XSS Safe #
+
+  ```
+  var name = '<script>alert("XSS");</script>';
+  var div = <div>{name}</div>;
+  ```
+
+  ```
+  <div><script>alert("XSS");</script></div>
+  ```
+
+# Notes #
+React is safe. We are not generating HTML strings so XSS protection is the 
+default.
+
+=13=============================================================================
+
+# It's still JavaScript #
+
+  ```
+  var items = ['apple', 'banana', 'cranberry'];
+
+  var renderItem = function(item) {
+    return * {item};
+  };
+
+  var list = (
+    <ul className={items.length ? '' : 'empty'}>
+      {items.map(renderItem)}
+    
+  );
+  ```
+
+# Notes #
+This is not another language that you need to learn. You can take advantage of
+the full features of JavaScript.  
+
+
+=14=============================================================================
+
+# Composite Component #
+
+  ```
+  var UserCard = React.createClass({
+    render: function() {
+       return (
+         <div>
+           <UserPhoto userID={this.props.id} />
+           <UserProfile userID={this.props.id} />
+         </div>
+       );
+    }
+  });
+  ```
+
+# Notes #
+Give anothe example of how to build a composite (complex) component with 
+other components and JSX.
+
+
+=15=============================================================================
+
+# Rendering #
+
+  * In the past, the page is directly rendered by the server. 
+  * Whenever you refresh the page, you'd get the updated page.
+  * The browser does nothing more than just showing the page.
+
+=16=============================================================================
+
+  * This has been working well.
+  * The UI is always up-to-date.
+
+# Notes #
+Web was designed specifically for the mainframe server in the 1970s. The 
+server renders the whole screen contents and then sends over the network to 
+the terminal.
+
+Whenever the clinet does something that needs to update the screen, the server 
+will re-render the entire screen. In the past many years, this model works 
+quite well on the Web. This simple approach achieves the web frameworks such 
+as LAMP, Rails, Django, PHP and other technologies.
+
+
+=17=============================================================================
+
+# Reactive Rendering #
+
+  * Initially, React renders the whole component with its initial data. 
+  * When data changes, React will re-render the component.
+  * No data binding required. 
+
+# Notes #
+Explain how reactive rendering works:
+When the data changes, React conceptually hits the "refresh" button, and knows 
+to only update the changed parts.  
+
+=18=============================================================================
+
+  ```
+  var Counter = React.createClass({
+    render: function() {
+      return <div>count : {this.props.count}</div>;
+    }
+  });
+  ```
+  ```
+  var ii = 0;  
+  setInterval(function() {
+    React.renderComponent(
+      <Counter count={ii++} />,
+      document.getElementById('renderTarget')
+    );
+  }, 1000);
+  ```
+
+# Notes #
+Show pseudo codes for "Reactive Rendering".
+
+=19=============================================================================
+
+# When data changes... #
+
+  ```
+  <div id="page">
+    <table>
+      <tr>
+        <td>1 + 1 = </td>
+        <td id="result">?</td>
+      </tr>
+    </table>
+  </div>
+  ```
+
+# Notes #
+Elaborate the case of how markup should be updated when the data changes.
+  
+
+=20=============================================================================
+# Rendering with DOM mutation #
+
+  ```
+  page.innerHTML = (
+    '<table>' +
+    '  <tr>' +
+    '    <td>1 + 1 = </td>' +
+    '    <td id="result">2</td>' +
+    '  </tr>' +
+    '</table>'
+  );
+  ```
+
+  * High cost
+  * Low effeciency
+  * May miss UI states easily.
+
+# Notes #
+This examples show that using `innerHTML` is a bad idea of update markups 
+because: 
+* It trigger excessive DOM parsing and reflow process.
+* It may mess up form fields and scroll position.
+
+
+=21=============================================================================
+
+# Minimize DOM mutation #
+
+  ```
+  result.innerHTML = '2';
+  ```
+
+# Notes # 
+Instead, React only touches the minimun sets of DOM nodes to update the markup.
+
+=22=============================================================================
+
+# Virtual DOM Tree #
+
+  * Virtual DOM tree made with JavaScript
+  * Reflow Free
+  * Support Events
+
+
+# Notes #
+Introduce the concept of the Virtual DOM in React. 
+  
+=23=============================================================================
+
+# When data changes... #
+
+* Create a new sub virtual DOM tree.
+* Compare it with the current one.
+* Record the diffs
+* Perform batched updates for those diffs.
+
+# Notes #
+Explains how Virtual DOM works.
+
+=24=============================================================================
+
+# Fast Rendering #
+
+  * JavaScript is fast.
+  * Batch DOM mutation.
+  * It's possible to render at 60fps 
+
+# Notes #
+List of benefits of using vurtual DOM.
+
+
+=25=============================================================================
+
+# Virtual DOM #
+
+  It runs at any environment with JavaScript support.
+
+  * Node JS
+  * PHP - V8js
+  * Python - PyReact
+  * Web Worker
+
+# Notes #
+List of languages that can use vurtual DOM for rendering.
+
+=26=============================================================================
+
+# Layered Architecture of Rendering #
+
+  * Data Input Interface
+  * Components Composition
+  * Rendering
+
+
+# Notes #
+List of the basic layered architecture of React rendering.
+
+=27=============================================================================
+
+# Events #
+
+  ```
+  // <Hello name="Hedger" />
+
+  var Hello = React.createClass({
+    render: function() {
+      return <button onClick={this._sayHi}>click</button>;
+    },
+
+    _sayHi: function(event) {
+      event.preventDefault();
+      alert('Hello, ' + this.props.name);
+    }
+  });
+  ```
+
+# Notes #
+Explains how Events works in React:
+1. It uses event delegation for performance.
+2. It supports auto-binding.
+3. It uses the AbstractEvent which is environment agonistic.
+
+
+=28=============================================================================
+
+# Resources: #
+
+  * React JS, http://facebook.github.io/react  
+  * Community Support, http://facebook.github.io/react/support.html
+
+# Notes #
+List of external resources.
+
+=29=============================================================================
+
+# DEMO #
+
+  * React JS Fiddler  
+  * Todo List
+  * Simple Clock
+  * Wolfenstein3D-react 
+  * React VS Angular
+   
+# Notes #
+List of examples and DEMOs.
