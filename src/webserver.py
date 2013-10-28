@@ -27,11 +27,14 @@ app_config_update_time = os.path.getmtime(app_config_path)
 webserver_util_update_time = os.path.getmtime(webserver_util_path)
 
 def get_local_ip_address(target):
-  s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-  s.connect((target, 8000))
-  ipaddr = s.getsockname()[0]
-  s.close()
-  return ipaddr
+  try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect((target, 8000))
+    ipaddr = s.getsockname()[0]
+    s.close()
+    return ipaddr
+  except:
+    return '127.0.0.1'  
 
 def should_refresh():
   global app_config_update_time

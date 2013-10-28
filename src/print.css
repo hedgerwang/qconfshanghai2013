@@ -1,0 +1,118 @@
+html, body {
+  color: black; 
+  font-family: "Lato", sans-serif;
+  font-size: 5vh;
+  font-weight: 200;
+  height: 100vh;
+  letter-spacing: -0.02em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.reveal {
+  width: 100%;
+  height: 100vh;
+}
+
+.slides {
+  height: 100vh; !important;
+  width: 100% !important;
+  zoom: 1 !important;
+}
+
+img {
+  display: block;
+  margin: auto;
+  max-height: 70%;
+  max-width: 80%;
+  margin: 8vh auto;
+}
+
+section {
+  height: 99vh;
+  width: 100%;
+  border-bottom: solid 1px #aaa;
+  overflow: hidden;
+  box-sizing: border-box;
+  page-break-after:always;
+
+  /* flexbox, por favor */
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+ 
+  display: -moz-box !important;
+  -moz-box-orient: vertical;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  
+  display: box !important;
+  box-orient: vertical;
+  box-pack: center;
+  box-align: center;  
+}
+
+h1 {
+  font-size: 4em;
+  margin: 1vh;
+}
+
+h2 {
+  font-size: 1.4em;
+  margin: 1vh;
+}
+
+h3 {
+  font-size: 1.1em;
+  margin: 1vh;
+}
+
+blockquote {
+  font-size: 1.1em;
+  font-style: italic;
+  max-width: 70%;
+  margin: 1vh;
+}
+
+ul {
+  max-width: 60%;
+  text-align: left;
+  margin: auto;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #2518b5;
+  display: block;
+}
+
+em {
+  display: inline-block;
+  margin: 0 0.5em;
+}
+
+li {
+  margin-bottom: 1vh;
+}
+
+pre {
+  border: solid 1px #ccc;
+  font-size: 3vh;
+  padding: 0 1em;
+  margin: 0.5em 0;
+  text-align: left;
+  width: 70%;
+}
+
+code {
+  font-family: 
+    Pragmata, Menlo, 'DejaVu LGC Sans Mono', 'DejaVu Sans Mono', 
+    Consolas, 'Everson Mono', 'Lucida Console', 'Andale Mono', 
+    'Nimbus Mono L', 'Liberation Mono', FreeMono, 'Osaka Monospaced', 
+    Courier, 'New Courier', monospace !important;
+  line-height: 130%;   
+}

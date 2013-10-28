@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">  
+  <script type='text/javascript' src='angular.min.js'></script>
+  <script type='text/javascript' src="stats.min.js"></script>
+    
+  
+  <style type='text/css'>
+    .balls {
+  border: 1px solid black;
+  width: 420px;
+  height: 420px;
+  margin: 5px;
+}
+
+.ball {
+    display: inline-block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+  </style>
+  
+
+
+<script type='text/javascript'>//<![CDATA[ 
+
+angular.module('balls', []).
+    directive('ballPosition', function() {
+        return function(scope, element, attrs) {
+            element.addClass('ball');
+            var ball = scope[attrs.ballPosition];
+            element.css('backgroundColor', ball.color);
+            scope.$watch(function() {
+                element.css({
+                    left: (ball.x + 5) + 'px',
+                    top: (ball.y + 5) + 'px'
+                });
+            });
+        };
+    }).
+    factory('animFrame', function($rootScope) {
+      var animFrame = 
+              window.requestAnimationFrame       || 
+              window.webkitRequestAnimationFrame || 
+              window.mozRequestAnimationFrame    || 
+              window.oRequestAnimationFrame      || 
+              window.msRequestAnimationFrame     || 
+              function( callback ){
+                window.setTimeout(callback, 1000 / 60);
+              };
+        return function(fn) {
+          animFrame(function(){
+            $rootScope.$apply(fn);
+          });
+        }
+    }).
+    controller('bounce', function($scope, animFrame) {
+        var stats = new Stats();
+        stats.setMode(1);
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.right = '0px';
+        stats.domElement.style.top = '0px';
+        document.body.appendChild( stats.domElement );
+        
+        var width = 400;
+        var height = 400;
+        var speed = .5;
+        var lastTime = new Date().getTime();
+        
+        function color() {
+          var color = '#',
+              i = 6;
+      
+          while(i--) {
+            color += Number(Math.floor(16 * Math.random())).toString(16);
+          }
+          return color;
+        }
+        
+        $scope.balls = [];
+        
+        $scope.changeCount = function(count) {
+            while(count>0) {
+                $scope.balls.push({
+                    x: width * Math.random(),
+                    y: height * Math.random(),
+                    velX: 2*speed * Math.random() - speed,
+                    velY: 2*speed * Math.random() - speed,
+                    color: color()
+                });
+                count--;
+            }
+            while(count<0) {
+                $scope.balls.pop();
+                count++;
+            }
+        }
+        
+        function tick() {
+          stats.end(); stats.begin();
+            
+          var now = new Date().getTime(),
+              delay = now - lastTime,
+              balls = $scope.balls;
+        
+          for(var i=0, ii=balls.length; i<ii; i++) {
+              var b = balls[i];
+              b.x += delay * b.velX;
+              b.y += delay * b.velY;
+              if (b.x < 0) { b.x *= -1; b.velX *= -1; }
+              if (b.y < 0) { b.y *= -1; b.velY *= -1; }
+              if (b.x > width) { b.x = 2*width - b.x; b.velX *= -1; }
+              if (b.y > height) { b.y = 2*height - b.y; b.velY *= -1; }
+          }
+          lastTime = now;
+          animFrame(tick);
+        }
+        
+        tick();        
+     });
+//]]>  
+
+</script>
+
+
+</head>
+<body>
+  <div ng-app="balls" ng-controller="bounce">
+  <div class="balls">
+      <div ng-repeat="ball in balls"
+           ball-position="ball"></div>
+  </div>
+  {{balls.length}} balls <br>
+  <a href ng-click="changeCount(1)">+1</a> 
+  <a href ng-click="changeCount(10)">+10</a> 
+  <a href ng-click="changeCount(100)">+100</a> 
+  <br>
+  <a href ng-click="changeCount(-1)">-1</a> 
+  <a href ng-click="changeCount(-10)">-10</a> 
+  <a href ng-click="changeCount(-100)">-100</a> 
+</div>
+  angular  
+</body>
+
+
+</html>
+

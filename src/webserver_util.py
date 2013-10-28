@@ -36,14 +36,17 @@ HTML = '''
   <head>
     <base target="_new" />
     <meta charset="utf-8">
-    <title>Slide</title>
+    <title></title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/node_modules/reveal.js/css/reveal.css" />
-    <link rel="stylesheet" href="/node_modules/reveal.js/css/theme/simple.css" id="theme" />
-    <link rel="stylesheet" href="/node_modules/reveal.js/lib/css/zenburn.css" />
-    <link rel="stylesheet" href="/src/style.css" />
+
+    <link media="screen" rel="stylesheet" href="/node_modules/reveal.js/css/reveal.css" />
+    <link media="screen" rel="stylesheet" href="/node_modules/reveal.js/css/theme/simple.css" id="theme" />
+    <link media="screen" rel="stylesheet" href="/node_modules/reveal.js/lib/css/zenburn.css" />
+    <link media="screen" rel="stylesheet" href="/src/style.css" />
+    <link media="print"rel="stylesheet" href="/src/print.css"   />
+
     <!--[if lt IE 9]>
     <script src="/node_modules/reveal.js/lib/js/html5shiv.js"></script>
     <![endif]-->

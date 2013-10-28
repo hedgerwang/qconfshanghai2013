@@ -1,3 +1,7 @@
+<script>
+document.title = 'Keynotes';
+</script>
+
 <h1>跨终端的</h1>
 <h2>Web前端設計模式</h2>
 ===
@@ -216,7 +220,7 @@ class ChildClass extends ParentClass {
 
 ===
 
-<h2>未來（進行中）</h2>
+<h2>Arrow Fucntion</h2>
 
 <xmp defer>
   var a1 = ['apple', 'banana', 'carrot'];
@@ -229,6 +233,56 @@ class ChildClass extends ParentClass {
 </xmp>
 
 ===
+
+<h2>Generator</h2>
+
+<xmp>
+function *range(max, step) {
+  var count = 0;
+  step = step || 1;
+
+  for (var i = 0; i < max; i += step) {
+    count++;
+    yield i;
+  }
+
+  return count;
+}
+
+var gen = range(20, 3), info;
+
+while (!(info = gen.next()).done) {
+  console.log(info.value);
+}
+
+console.log("steps taken: " + info.value);
+</xmp>
+
+===
+
+<h2>JavaScript Next</h2>
+
+<ul>
+  <li>
+    <a href="https://github.com/google/traceur-compiler">
+     Google's Traceur Compiler
+    </a>
+  </li>
+  <li>
+    <a href="https://github.com/ariya/esprima/tree/harmony">
+      Esprima
+    </a>
+  </li>
+  <li>
+    <a href="https://github.com/facebook/jstransform">
+    JSTransform
+    </a>
+  </li>
+</ul>
+
+
+===
+
 
 <h2>填充碼(Polyfill)</h2>
 <!--
