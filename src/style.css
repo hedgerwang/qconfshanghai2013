@@ -14,7 +14,7 @@ body {
   font-size: 130%;
   line-height: 160%;  
   list-style: none;
-  border-left: solid 0.3em #eee;
+  border-left: solid 0.3em #aaa;
   padding-left: 1em;
   margin: 0.3em 0;
   border-radius: 0.3em;
@@ -23,7 +23,7 @@ body {
 
 .reveal h2,
 .reveal h3 {
-  margin-bottom: 0.4em;
+  margin: 0.2em;
 }
 
 .bricks {
@@ -71,3 +71,15 @@ body {
   text-align: center;
 }
 
+.reveal pre .xml {
+  opacity: 1;
+}
+
+*::selection {
+  background: tomato;
+  color: #fff;
+}
+
+.reveal pre code {
+  max-height: 20em;
+}

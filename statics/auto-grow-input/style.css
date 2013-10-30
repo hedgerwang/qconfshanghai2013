@@ -1,0 +1,43 @@
+body {
+  margin: 20px;
+}
+
+.AutoGrowInput {
+  border: solid 3px #ccc;
+  display: inline-block;
+  margin: 0 4px;
+  position: relative;
+}
+
+.AutoGrowInput.focused {
+  background: #ffffcc;
+  border-color: blue;
+}
+
+.AutoGrowInput .text {
+  background: transparent;
+  display: block;
+  padding: 4px 8px;
+  visibility: hidden;
+  white-space: nowrap;
+}
+
+.AutoGrowInput .input {
+  -webkit-appreance: none;
+  background: transparent;
+  border: none;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  outline: none;
+  padding: 3px 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.AutoGrowInput,
+.AutoGrowInput .text,
+.AutoGrowInput .input {
+  font: 24px / 1.375 arial;
+}

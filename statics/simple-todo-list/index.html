@@ -24,7 +24,7 @@ var TodoApp = React.createClass({
     return {items: [], text: ''};
   },
 
-  onInput: function(e) {
+  onChange: function(e) {
     this.setState({text: e.target.value});
   },
   
@@ -43,7 +43,7 @@ var TodoApp = React.createClass({
         <h2>TODO</h2>
         <TodoList items={this.state.items} />
         <form onSubmit={this.handleSubmit}>
-          <input onInput={this.onInput} value={this.state.text} />
+          <input onChange={this.onChange} value={this.state.text} />
           <button>{'Add #' + (this.state.items.length + 1)}</button>
         </form>
       </div>
@@ -53,8 +53,6 @@ var TodoApp = React.createClass({
 
 React.renderComponent(<TodoApp />, document.body);
 </script>
-
-
 <script src="react-js-fiddle-integration.js"></script>
 </body>
 </html>

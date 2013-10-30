@@ -29,7 +29,31 @@ Start with talking about the component on the web.
 
 ===
 
-<h2>從HTML Markup 到 Component Markup</h2>
+<h2>HTML Components</h2>
+
+<xmp defer>
+<img src="..." />
+</xmp>
+
+<xmp defer>
+<video src="...." control="y" />
+</xmp>
+
+<xmp defer>
+<form>
+  <input value="text" />
+  <button>submit</button>
+</form>  
+</xmp>
+
+<!--
+In fact, we all use component in daily basic. 
+But that's not enough.
+-->
+
+===
+
+<h2>HTML ➔ Component</h2>
 <xmp defer>
 <div class="DateRange">
   開始 : <input  
@@ -64,14 +88,15 @@ simpler and clear.
 <li defer>W3C Draft</li>  
 <li defer>Google Polymer</li>
 <li defer>Mozilla X-Tag</li>
-<li defer><del>MicroSoft HTML Component</del></li>
+<li defer><del>Microsoft HTML Component</del></li>
 </ul> 
-
 
 <!--
 Give background knowledge about the recent status of web component.
 --> 
+
 ===
+
 
 <h2>React Component</h2>
 
@@ -81,17 +106,12 @@ Give background knowledge about the recent status of web component.
   <li defer>UI工具箱</li>
 </ul>
 
-<!--
-Then move onto the React Component part.
-React is a JavaScript library for creating user interfaces by Facebook and
-Instagram. Many people choose to think of React as the V in MVC.
--->  
 
 ===
 
 <xmp>
-<div class="Hello">
-  Hello, Hedger
+<div class="hello">
+  <span>Hello</span>
 </div>
 </xmp>
 
@@ -99,145 +119,66 @@ Instagram. Many people choose to think of React as the V in MVC.
 Show a basic example of a "Hello" component with HTML Markup.
 -->
 
+<div defer>
+<h2>⬇</h2>
+
+<xmp>
+// React.DOM
+var React = require('React');
+
+var hello = React.DOM.div(
+  {className: 'hello'},
+  React.DOM.span(null, ['Hello'])
+);
+
+React.renderComponent(hello, document.body);
+</xmp>
+</div>  
+
+<!--
+1. Show ugly JS API to render markup.
+2. Hard to read and write.
+3. Not maintainable with nested components.
+-->
+
 ===
 
 <xmp>
-<Hello name="Hedger" />
-</xmp>
-
-<!--
-Show a basic example of a "Hello" component with (conceptual) Component Markup.
--->
-
-<xmp defer>
-React.renderComponent(
-  Hello({name: 'Hedger'}),  
-  document.body
+var hello = React.DOM.div(
+  {className: 'hello'},
+  React.DOM.span(null, ['Hello'])
 );
 </xmp>
 
-<!--
-Present the pseudo JavaScript code that renders the component with the React
-library.
--->
-
-<xmp defer>
-var Hello = React.createClass({
-  render: function() {
-    return React.DOM.div(
-      {className: 'Hello'},
-      'Hello ' + this.props.name
-    );
-  }
-});
-</xmp>
-
-<!--
-Present the pseudo JavaScript code that defines the component with the React
-library.
--->
-
-===
-
-<h2>JSX語法</h2>
-
-<!--
-Introduce JSX.  
-JSX is a JavaScript XML syntax transform recommended for use with React.
--->
-
-===
-
-<xmp defer>
-<Hello name="Hedger" />
-</xmp>
-
-<xmp defer>
-React.renderComponent(
-  <Hello name="Hedger" />,  
-  document.body
+<div defer>
+<h2>⬇</h2>
+<xmp>
+// JSX  
+var hello = (
+  <div class="hello">
+    <span>Hello</span>
+  </div>
 );
-</xmp>
-
-<xmp defer>
-var Hello = React.createClass({
-  render: function() {
-    return (
-      <div className="Hello">
-        Hello {this.props.name}
-      </div>
-    );
-  }
-});
-</xmp>
+</xmp>  
+</div>
 
 <!--
-Show pseudo code of using JSX for the Hello component. 
+- Introduce JSX.
+- We'd show all examples with JSX.
+- JSX is optional but recommanded.
 -->
 
 ===
 
-<h2>使用JSX</h2>
-
-<!--
-We recommend using JSX for many reasons:  
-* It's easier to visualize the structure of the DOM.
-* Designers are more comfortable making changes.
-* It's familiar for those who have used MXML or XAML.
--->  
-===
-
-<h2>聲明式代碼</h2>
+<h2>JSX + JavaScript</h2>
 
 <xmp defer>
-var table = document.createElement('table');
-var tr = document.createElement('tr');
-var td = document.createElement('td');
-var text = document.createTextNode('some data');
-td.appendChild(text);
-td = document.createElement('td');
-text = document.createTextNode('some more data');
-td.appendChild(text);
-tr.appendChild(td);
-table.appendChild(tr);
-</xmp>
-
-<xmp defer>
-<table>
-  <tr>
-    <td>some data</td>
-    <td>some data</td>
-  </tr>
-</table>
-</xmp>
-
-<!--
-* It's easier to visualize the structure of the DOM.
-* Designers are more comfortable making changes.
-* It's familiar for those who have used MXML or XAML.
---> 
-
-===
-
-<h2>免除XSS攻擊</h2>
-
-<xmp defer>
-var name = '<script>alert("XSS");</script>';
-var div = <div>{name}</div>;
-</xmp>
-
-<xmp defer>
-<div>&lt;script&gt;alert(&quot;XSS&quot;);&lt;/script&gt;</div>
-</xmp>
-
-<!--
-React is safe. We are not generating HTML strings so XSS protection is the 
-default.
--->
-
-===
-
-<h2>JavaScript語法</h2>
+var list = (
+  <ul>
+    <li>apple</li><li>banana</li><li>cranberry</li>
+  </ul>
+);
+</xmp> 
 
 <xmp defer>
 var items = ['apple', 'banana', 'cranberry'];
@@ -247,7 +188,7 @@ var renderItem = function(item) {
 };
 
 var list = (
-  <ul className={items.length ? '' : 'empty'}>
+  <ul>
     {items.map(renderItem)}
   </ul>
 );
@@ -260,17 +201,159 @@ the full features of JavaScript.
 
 ===
 
-<h2>Composite Component</h2>
+<!--
+Then move onto the React Component part.
+React is a JavaScript library for creating user interfaces by Facebook and
+Instagram. Many people choose to think of React as the V in MVC.
+-->  
 
-<xmp>
+<h2>React Component</h2>
+
+<xmp defer>
+var Hello = React.createClass({
+  render: function() {
+    return (
+      <div className="hello">
+        <span>Hello</span>
+      </div>
+    );
+  }
+});
+</xmp>
+
+<xmp defer>
+React.renderComponent(<Hello/>,  document.body);
+</xmp>
+
+
+===
+
+<h2>It's Declaractive and Accessible</h2>
+
+<xmp defer>
+var table = document.createElement('table');
+var tr = document.createElement('tr');
+var td = document.createElement('td');
+var text = document.createTextNode('some data');
+td.appendChild(text);
+...
+</xmp>
+
+<!--
+We recommend using JSX for many reasons:  
+* It's easier to visualize the structure of the DOM.
+* Designers are more comfortable making changes.
+* It's familiar for those who have used MXML or XAML.
+-->  
+
+<xmp defer>
+var MyTable = React.createClass({  
+  render: function() {
+    return (
+      <table>
+        <tr><td>some data</td><td>some data</td></tr>
+      </table>
+    );
+  }
+});
+</xmp>
+
+<!--
+* It's easier to visualize the structure of the DOM.
+* Designers are more comfortable making changes.
+* It's familiar for those who have used MXML or XAML.
+-->
+
+===
+
+<h2>It's Congugurable</h2>
+
+<xmp defer>
+var Hello = React.createClass({
+  render: function() {
+    return (
+      <div className="hello">
+        Hello, <span>{this.props.name}</span>
+      </div>
+    );
+  }
+});
+</xmp>
+
+<xmp defer>
+React.renderComponent(
+  <Hello name="world" />,  
+  document.body
+);
+</xmp>
+
+<xmp defer>
+<div class="hello"><span>Hello, world</span></div>
+</xmp>  
+
+===
+
+<h2>It's Interactive</h2>
+
+<xmp defer>
+var Hello = React.createClass({
+  render: function() {
+    return (
+      <div className="hello" onClick={this.onClick}>
+        Hello, <span>{this.props.name}</span>
+      </div>
+    );
+  },
+
+  onClick: function() {
+    alert(this.props.name);
+  }
+});
+</xmp>
+
+===
+
+<h2>It's safe</h2>
+
+<xmp defer>
+var name = '<script>alert("XSS");</script>';
+var div = <div>{name}</div>;
+</xmp>
+
+<xmp defer>
+<div>
+  &lt;script&gt;alert(&quot;XSS&quot;);&lt;/script&gt;
+</div>
+</xmp>
+
+<!--
+React is safe. We are not generating HTML strings so XSS protection is the 
+default.
+-->
+
+===
+
+
+<h2>It's composable</h2>
+
+<xmp defer>
+var onCardHoverCard = function(id) {console.log(id)};
+React.renderComponent(
+  <UserCard id="me" onHover={onCardHoverCard} />
+);
+</xmp>  
+
+<xmp defer>
 var UserCard = React.createClass({
   render: function() {
-     return (
-       <div>
-         <UserPhoto userID={this.props.id} />
-         <UserProfile userID={this.props.id} />
-       </div>
-     );
+     return <div onMouseEnter={this.onMouseEnter}>
+              <UserPhoto userID={this.props.id} />
+              <UserProfile userID={this.props.id} />
+            </div>;
+  },
+
+  onMouseEnter: function() {
+    this.props.onHover(this.props.id);
   }
 });
 </xmp>
@@ -309,51 +392,14 @@ as LAMP, Rails, Django, PHP and other technologies.
 
 ===
 
-<h2>Reactive Rendering</h2>
-
+<h2>動態頁面</h2>
 <ul>
-  <li defer>
-  一開始React會根據初始數據render整個Component
-  </li>
-
-  <li defer>
-  當數據更新時，React會重新render整個Component
-  </li>
-
-  <li defer>
-  不需要複雜的"Data Binding"
-  </li>
-</ul>
-
-<!--
-Explain how reactive rendering works:
-When the data changes, React conceptually hits the "refresh" button, and knows 
-to only update the changed parts.  
--->
-
-===
-
-<xmp>
-var Counter = React.createClass({
-  render: function() {
-    return <div>count : {this.props.count}</div>;
-  }
-});
-</xmp>
-<xmp>
-var ii = 0;  
-setInterval(function() {
-  React.renderComponent(
-    <Counter count={ii++} />,
-    document.getElementById('renderTarget')
-  );
-}, 1000);
-</xmp>
+  <li defer>初始數據</li>
+  <li defer>即時數據</li>
+  <li defer>用戶輸入</li>
+</ul>  
 
 
-<!--
-Show pseudo codes for "Reactive Rendering".
--->  
 
 ===
 
@@ -407,9 +453,42 @@ because:
 result.innerHTML = '2';
 </xmp>
 
+<ul>
+<li defer>需要個別指定Nodes</li>
+<li defer>效率低</li>
+<li defer>難以維護</li>
+</ul>
+
 <!-- 
 Instead, React only touches the minimun sets of DOM nodes to update the markup.
 -->
+
+===
+
+<!--
+Data changes over time. When data changes, updating UI is necessary.
+So who would React update the page?
+--> 
+
+<h2>Reactive Rendering</h2>
+
+<ul>
+  <li defer>
+  一開始React會根據初始數據render整個Component
+  </li>
+
+  <li defer>
+  當數據更新時，React會重新render整個Component
+  </li>
+
+  <li defer>
+  不需要複雜的"Data Binding"
+  </li>
+</ul>
+
+===
+
+<h2>Will it work?</h2>
 
 ===
 
@@ -439,6 +518,41 @@ Introduce the concept of the Virtual DOM in React.
 Explains how Virtual DOM works.
 -->
 
+
+===
+
+<!--
+Explain how reactive rendering works:
+When the data changes, React conceptually hits the "refresh" button, and knows 
+to only update the changed parts.  
+-->
+
+<xmp>
+var Counter = React.createClass({
+  render: function() {
+    return (
+      <div>
+        count : <span>{this.props.count}</span>
+      </div>
+    );
+  }
+});
+</xmp>
+<xmp>
+var ii = 0;  
+setInterval(function() {
+  React.renderComponent(
+    <Counter count={ii++} />,
+    document.getElementById('renderTarget')
+  );
+}, 1000);
+</xmp>
+
+
+<!--
+Show pseudo codes for "Reactive Rendering".
+-->  
+
 ===
 
 <h2>高效的Rendering</h2>
@@ -451,6 +565,22 @@ Explains how Virtual DOM works.
 
 <!--
 List of benefits of using vurtual DOM.
+-->
+
+===
+
+<h2>React的基本分層架構</h2>
+
+<ul class="blocks">
+  <li defer>Data Input Interface</li>
+  <li defer>Components Composition</li>
+  <li defer>Rendering</li>
+</ul>
+
+
+
+<!--
+List of the basic layered architecture of React rendering.
 -->
 
 ===
@@ -474,27 +604,15 @@ List of languages that can use vurtual DOM for rendering.
 
 ===
 
-<h2>React的基本分層架構</h2>
-
-<ul class="blocks">
-  <li defer>Data Input Interface</li>
-  <li defer>Components Composition</li>
-  <li defer>Rendering</li>
-</ul>
-
-<!--
-List of the basic layered architecture of React rendering.
--->
-
-===
-
 <h2>Events</h2>
 <xmp>
 // <Hello name="Hedger" />
 
 var Hello = React.createClass({
   render: function() {
-    return <button onClick={this._sayHi}>click</button>;
+    return <button onMouseEnter={this._sayHi}>
+             hover me
+           </button>;
   },
 
   _sayHi: function(event) {
@@ -509,6 +627,7 @@ Explains how Events works in React:
 1. It uses event delegation for performance.
 2. It supports auto-binding.
 3. It uses the AbstractEvent which is environment agonistic.
+4. It is separate process from markup generation.
 -->
 
 ===
