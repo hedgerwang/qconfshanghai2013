@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />  
+<title>TODO List</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript' src="lib/react-0.5.0.js"></script>
+<script type="text/javascript" src="lib/JSXTransformer-0.5.0.js"></script>
+<style>
+body, input, button {
+ font-family: arial;
+ font-size: 13px
+}
+
+body {
+  background: #000;
+}
+
+.TodoApp {
+  background: #fff;
+  border: solid 1px #efefef;
+  border-radius: 16px;
+  display: inline-block;
+  padding: 16px;
+  margin: 10px;
+  width: 300px;
+}
+
+.TodoApp .remove {
+  float: right;
+  padding: 0 3px;
+}
+
+.TodoApp h2 {
+  font-size: 1em;
+  margin: 0 0 20px 0;
+}
+
+.TodoApp ul {
+  list-style: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.TodoApp li {
+  padding: 8px 4px;
+  border-top: dotted 1px #ccc;
+  clear: both;
+  overflow: hidden;  
+}
+
+.TodoApp form {
+  margin: 0;
+}
+
+.TodoApp input {
+  box-sizing: border-box;
+  height: 30px;
+  padding: 4px;
+  vertical-align: middle;
+}
+
+.TodoApp button {
+  background: #ccc;
+  border: solid 1px #aaa;
+  box-sizing: border-box;
+  height: 30px;
+  padding: 8px 16px;
+  vertical-align: middle;
+}
+</style>
+</head>
+<body>
+<script type="text/jsx">
+/** @jsx React.DOM */
+
+var TodoApp = React.createClass({
+  getInitialState: function() {
+    return {
+      items: [], 
+      text: ''
+    };
+  },
+
+  onChange: function(e) {
+    this.setState({text: e.target.value});
+  },
+  
+  handleSubmit: function(e) {
+    e.preventDefault();
+    if (this.state.text) {
+      var newItem = {
+        text: this.state.text
+      };
+      this.state.items.push(newItem);
+      this.setState(this.state);
+    }
+  },
+  
+  render: function() {
+    return (
+      <div className="TodoApp">
+        <h2>TODO</h2>
+        <TodoList items={this.state.items} onRemove={this.onRemove} />
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.onChange} value={this.state.text} />
+          <button>{'Add #' + (this.state.items.length + 1)}</button>
+        </form>
+      </div>
+    );
+  },
+
+  onRemove: function(item) {
+    var index = this.state.items.indexOf(item);
+    this.state.items.splice(index, 1);
+    this.setState(this.state);
+  }
+});
+
+var TodoList = React.createClass({
+  render: function() {
+    return <ul>{this.props.items.map(this.renderItem)}</ul>;
+  },
+
+  renderItem: function(item) {
+    return <TodoItem item={item} onRemove={this.props.onRemove} />;
+  }
+});
+
+var TodoItem = React.createClass({
+  render: function() {
+    return (
+      <li>
+        <a href="#" onClick={this.onClick} className="remove">X</a>
+        {this.props.item.text}        
+      </li>
+    );
+  },
+
+  onClick: function(e) {
+    e.preventDefault();
+    this.props.onRemove(this.props.item);
+  }
+});  
+
+React.renderComponent(<TodoApp />, document.body);
+</script>
+<script src="lib/react-js-fiddle-integration.js"></script>
+</body>
+</html>
+
