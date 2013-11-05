@@ -2,15 +2,15 @@
 document.title = 'Keynotes';
 </script>
 
-<h1>跨终端的</h1>
-<h2>Web前端設計模式</h2>
+<h1>碎片化終端</h1>
+<h2>的Web設計模式</h2>
 ===
 
 <h2>關於</h2>
 <ul>
-  <li defer>Hedger Wang</li>
-  <li defer>前端工程師</li>
-  <li defer>2011 - Facebook</li>
+  <li>Hedger Wang</li>
+  <li>前端工程師</li>
+  <li>2011 - Facebook</li>
   <li defer>2008 - Google</li>
   <li defer>2004 - Yahoo</li>
 </ul>
@@ -26,7 +26,8 @@ document.title = 'Keynotes';
      href="http://opensignal.com/reports/fragmentation-2013">
     <img src="images/adnroid_device_fragmentation.png" border="0" />
   </a>
-  <small>Android Fragmentation Visualized (July 2013)</small>
+  <small>Android Fragmentation Visualized (July 2013)</small><br />
+  <small>http://opensignal.com/reports/fragmentation-2013/</small>
 </div>
 
 ===
@@ -88,7 +89,7 @@ document.title = 'Keynotes';
   最大的錯誤就是在HTML5上下注太多
   &rdquo;
 </blockquote>
-<p><small>馬克‧扎克伯格, 9/11/2012</small></p>
+<p><small>馬克‧扎克伯格, 9 / 11 / 2012</small></p>
 
 ===
 
@@ -220,7 +221,7 @@ class ChildClass extends ParentClass {
 
 ===
 
-<h2>Arrow Fucntion</h2>
+<h2>Arrow Function</h2>
 
 <xmp defer>
   var a1 = ['apple', 'banana', 'carrot'];
@@ -284,7 +285,7 @@ console.log("steps taken: " + info.value);
 ===
 
 
-<h2>填充碼(Polyfill)</h2>
+<h2>Polyfill</h2>
 <!--
 polyfill 模擬標準 API，所以能夠以一種面向所有瀏覽器未來的方式針對這些 API 進行開發，最終目標是：一旦對這些 API 的支持變成絕對大多數，則可以方便地去掉 polyfill，無需做任何額外工作。
 -->
@@ -327,7 +328,7 @@ Date.now()
 
 ===
 
-<h2>例外</h2>
+<h2>其它</h2>
 
 <div class="bricks">
   <a href="https://www.dartlang.org/">Dart</a>
@@ -341,18 +342,32 @@ Date.now()
 <ul>
   <li>模塊化</li>
   <li>標準化</li>
-  <li defer>開源化</li>
+  <li defer>更少代碼，更多相容性</li>
 </ul>
 
 ===
 
-<h2>相容性 : UI</h2>
+<h2>相容性</h2>
+
+===
+
+<h2>過去</h2>
 
 <ul>
-  <li defer>Web</li>
-  <li defer>HTML + CSS + JS</li>
-  <li defer>Data + View + Controller</li>
-</p>
+<li>http://www.gfw.com</li>
+<li>http://mobile.gfw.com</li>
+<li>http://ipad.gfw.com</li>
+<li>http://touch.gfw.com</li>
+<li>http://wap.gfw.com</li>
+</ul>  
+
+===
+
+<h2>現在</h2>
+
+<ul>
+<li>http://www.gfw.com</li>
+</ul>  
 
 ===
 
@@ -414,7 +429,7 @@ Date.now()
 </fieldset>
 </xmp>
 
-<p defer>優先使用（對象）組合，而非（類）繼承</p>
+<p defer>Favor Composition Over Inheritance</p>
 
 ===
 
@@ -504,12 +519,11 @@ Date.now()
 <h2>過去</h2>
 
 <xmp>
-var form = new Form();
-var textField = new TextField();
-var submitButton = new SubmitButton("submit");
+form = new Form();
+textField = new TextField();
+submitButton = new SubmitButton("submit", onSubmitClick);
 form.appendChild(textField);
 form.appendChild(submitButton);
-submitButton.onClick = onSubmitClick;
 </xmp>
 
 ===
@@ -518,7 +532,10 @@ submitButton.onClick = onSubmitClick;
 <xmp>
 <Form>
   <TextField />
-  <SubmitButton label="submit" onClick="onSubmitClick" />
+  <SubmitButton 
+    label="submit" 
+    onClick="onSubmitClick" 
+  />
 </Form>
 </xmp>
 
@@ -544,20 +561,20 @@ submitButton.onClick = onSubmitClick;
 <h2>過去</h2>
 
 <div class="bricks">
-  <em defer>Component 1</em><br />
-  <em defer>Component 2</em><br />
-  <em defer>Component 3</em><br />
-  <em defer>Component 4</em>
+  <em defer>Control 1</em><br />
+  <em defer>Control 2</em><br />
+  <em defer>Control 3</em><br />
+  <em defer>Control 4</em>
 </div>
 
 ===
 
 <h2>現在</h2>
 <div class="bricks">
-  <em>Component 1</em>
-  <em>Component 2</em>
-  <em>Component 3</em>
-  <em>Component 4</em>
+  <em>Control 1</em>
+  <em>Control 2</em>
+  <em>Control 3</em>
+  <em>Control 4</em>
 </div>
 
 ===
@@ -597,21 +614,17 @@ submitButton.onClick = onSubmitClick;
 
 ===
 
-<h2>制度與文化</h2>
+<h2>組織制度與文化</h2>
 
 <div>
   <img src="images/fb_posters.png" />
 </div>
 ===
 
-<h2>結語</h2>
 
-<blockquote defer cite="http://internet.org/">
+<blockquote cite="http://internet.org/">
   &ldquo;
-  我們只在起步階段。
-  還有許多重要工作等著我們。
-  如果你認為網際網路應該普及世界各個角落，讓人人都能受惠，請繼續關注最新消息，
-  以及如何一起努力的方式。
+  我們只在起步階段，還有許多重要工作等著我們。
   &rdquo;
 </blockquote>
 

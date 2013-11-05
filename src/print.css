@@ -105,7 +105,10 @@ pre {
   padding: 0 1em;
   margin: 0.5em 0;
   text-align: left;
-  width: 70%;
+  width: 90vw;
+  clear: both;
+  display: block;
+  float: none;
 }
 
 code {

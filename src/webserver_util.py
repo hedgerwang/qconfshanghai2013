@@ -37,6 +37,7 @@ HTML = '''
     <base target="_new" />
     <meta charset="utf-8">
     <title></title>
+    <script>console.log(%(pages_count)s)</script>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -46,6 +47,16 @@ HTML = '''
     <link media="screen" rel="stylesheet" href="/node_modules/reveal.js/lib/css/zenburn.css" />
     <link media="screen" rel="stylesheet" href="/src/style.css" />
     <link media="print"rel="stylesheet" href="/src/print.css"   />
+    <script>
+    if (document.documentElement.webkitRequestFullscreen) {
+      document.ondblclick = function (e) {
+        e.preventDefault();
+        document.webkitFullscreenElement ? 
+          document.webkitCancelFullScreen() : 
+          document.documentElement.webkitRequestFullscreen()
+      };
+    }
+    </script>
 
     <!--[if lt IE 9]>
     <script src="/node_modules/reveal.js/lib/js/html5shiv.js"></script>
@@ -97,7 +108,7 @@ HTML_NOT_FOUND = '''
   <ul>
     <li><a href="/keynotes">keynotes</a></li>
     <li><a href="/reactjs">reactjs</a></li>
-    <li><a href="/statics/index.html">statics</a></li>
+    <li><a href="/examples/index.html">examples</a></li>
   </ul>
 </body>
 </html>
@@ -155,6 +166,7 @@ def handle_get(path, query_params):
     mime = _supported_file_type.get(file_type)
   
   slide_path = './slides/' + path + '.html'
+  page_index = 0
 
   if os.path.isfile(slide_path):
     mime  = 'text/html'
@@ -162,13 +174,18 @@ def handle_get(path, query_params):
     sections = []
     for section in body.split('==='):
       section = section.strip()
+      page_index = page_index + 1
       if section:
         if section.find('>>>') > -1:
           levels = []
           for level in section.split('>>>'):
             levels.append('<section><!--level-->\n' + level + '\n</section>')
           section = '\n\n\n'.join(levels)
-        sections.append('<section><!--slide-->\n' + section + '\n</section>')
+        sections.append(
+          '\n<section data-index="%s"><!--slide-->\n%s\n</section>' %
+          (page_index, section)
+        )
+        
 
     body = '\n\n\n'.join(sections)
     body = RE_XMP_START.sub('<pre ', body)
@@ -179,7 +196,8 @@ def handle_get(path, query_params):
     body = RE_DEFER.sub(r'\g<before> class="fragment" \g<after>', body)
     content = HTML % {
       'body': body,
-      'name': cgi.escape(path.replace('/', ''))
+      'name': cgi.escape(path.replace('/', '')),
+      'pages_count': page_index
     }
   elif mime and os.path.isfile('.' + path):
     content = read_text('.' + path)
@@ -192,5 +210,5 @@ def handle_get(path, query_params):
   print '>>> (%s,  %s, %s)' % (file_type, mime, path)
   return {
     'mime': mime,
-    'content': content
+    'content': content,
   }

@@ -8,11 +8,12 @@ document.title = 'React';
 
 <h2>關於</h2>
 <ul>
-  <li defer>Hedger Wang</li>
-  <li defer>前端工程師</li>
-  <li defer>2011 - Facebook</li>
+  <li>王璽  / Hedger Wang</li>
+  <li>前端工程師</li>
+  <li>2011 - Facebook</li>
   <li defer>2008 - Google</li>
   <li defer>2004 - Yahoo</li>
+  <li defer>github : hedgerwang</li>
 </ul>
 
 <!-- 
@@ -21,18 +22,29 @@ Self introduction.
 
 ===
 
+<ul>
+<li>資料呈現</li>
+<li>交互作用</li>
+</ul>  
+
+===
+
 <h2>Component</h2>
 
-<!-- 
-Start with talking about the component on the web.
--->
+<!--
+前端工程師的工作主要是：
+1. 顯示資料
+2. 實作交互
+3. We've spent a lot of time on building GUIs.
+-->  
+
 
 ===
 
 <h2>HTML Components</h2>
 
 <xmp defer>
-<img src="..." />
+<img src="img.png" alt="image" />
 </xmp>
 
 <xmp defer>
@@ -40,8 +52,11 @@ Start with talking about the component on the web.
 </xmp>
 
 <xmp defer>
-<form>
-  <input value="text" />
+<form onsubmit="onFormSubmit(event, this)">
+  <select name="opts">
+    <option>item 1</option>
+    <option>item 2</option>
+  </select>  
   <button>submit</button>
 </form>  
 </xmp>
@@ -56,14 +71,12 @@ But that's not enough.
 <h2>HTML ➔ Component</h2>
 <xmp defer>
 <div class="DateRange">
-  開始 : <input  
-          type="text" 
-          name="date-start" 
-          value="2013/1/1" />
-  結束: <input 
-          type="text" 
-          name="date-end" 
-          value="2013/1/31" />
+  From : 
+  <input type="text" name="date-start" 
+         value="2013/1/1" />
+  To : 
+  <input type="text" name="date-start" 
+         value="2013/1/31" />
 </div>  
 </xmp>  
 
@@ -97,15 +110,7 @@ Give background knowledge about the recent status of web component.
 
 ===
 
-
 <h2>React Component</h2>
-
-<ul>
-  <li defer>UI的表現邏輯層 (View)</li>
-  <li defer>UI構造的基本單位</li>
-  <li defer>UI工具箱</li>
-</ul>
-
 
 ===
 
@@ -141,7 +146,7 @@ React.renderComponent(hello, document.body);
 3. Not maintainable with nested components.
 -->
 
-===
+>>>
 
 <xmp>
 var hello = React.DOM.div(
@@ -159,7 +164,7 @@ var hello = (
     <span>Hello</span>
   </div>
 );
-</xmp>  
+</xmp>
 </div>
 
 <!--
@@ -167,6 +172,25 @@ var hello = (
 - We'd show all examples with JSX.
 - JSX is optional but recommanded.
 -->
+
+>>>
+
+
+<iframe src="examples/react-js-fiddler/simple.html"></iframe>
+
+===
+
+<xmp>
+var hello = <div>hello</div>;
+</xmp>
+
+<h2>⬇</h2>
+
+<xmp>
+var hello = React.DOM.div(null, "hello");
+</xmp>  
+
+<a href="/examples/react-js-fiddler/jsx-compiler.html">...</a>  
 
 ===
 
@@ -187,11 +211,7 @@ var renderItem = function(item) {
   return <li>{item}</li>;
 };
 
-var list = (
-  <ul>
-    {items.map(renderItem)}
-  </ul>
-);
+var list = <ul>{items.map(renderItem)}</ul>
 </xmp>
 
 <!--
@@ -225,10 +245,15 @@ var Hello = React.createClass({
 React.renderComponent(<Hello/>,  document.body);
 </xmp>
 
+>>>
+
+<iframe src="examples/react-js-fiddler/complex.html"></iframe>
+
+
 
 ===
 
-<h2>It's Declaractive and Accessible</h2>
+<h2>It's Declarative</h2>
 
 <xmp defer>
 var table = document.createElement('table');
@@ -266,7 +291,13 @@ var MyTable = React.createClass({
 
 ===
 
-<h2>It's Congugurable</h2>
+<h2>It's Configurable</h2>
+
+<xmp defer>
+React.renderComponent(
+  <Hello name="world" />, document.body
+);
+</xmp>
 
 <xmp defer>
 var Hello = React.createClass({
@@ -278,13 +309,6 @@ var Hello = React.createClass({
     );
   }
 });
-</xmp>
-
-<xmp defer>
-React.renderComponent(
-  <Hello name="world" />,  
-  document.body
-);
 </xmp>
 
 <xmp defer>
@@ -337,26 +361,30 @@ default.
 <h2>It's Composite</h2>
 
 <xmp defer>
-var onCardHoverCard = function(id) {console.log(id)};
-React.renderComponent(
-  <UserCard id="me" onHover={onCardHoverCard} />
-);
+React.renderComponent(<UserCard id="me" />);
 </xmp>  
 
 <xmp defer>
 var UserCard = React.createClass({
   render: function() {
-     return <div onMouseEnter={this.onMouseEnter}>
-              <UserPhoto userID={this.props.id} />
-              <UserProfile userID={this.props.id} />
-            </div>;
-  },
-
-  onMouseEnter: function() {
-    this.props.onHover(this.props.id);
+    return (
+      <div>
+        <UserPhoto userID={this.props.id} />
+        <UserProfile userID={this.props.id} />
+      </div>
+    );
   }
 });
 </xmp>
+
+===
+
+<h2>React的工作項目</h2>
+
+<ul>
+  <li>Rendering</li>
+  <li>Interaction</li>
+</ul>  
 
 <!--
 Give anothe example of how to build a composite (complex) component with 
@@ -369,15 +397,14 @@ other components and JSX.
 
 <ul>
   <li defer>在過去，頁面內容是直接從服務端輸出的</li>
-  <li defer>只要重新整理頁面，就可以取得更新的UI</li>
+  <li defer>只要刷新頁面，就可以取得更新的UI</li>
   <li defer>對用戶端瀏覽器來說，只要負責顯示就好</li>
 </ul>
 
 
 ===
 
-<p>讓事情變得更簡單</p>
-<p>讓UI能夠反應數據的狀態</p>
+<h2>UI總是能夠反應數據的狀態</h2>
 
 <!--
 Web was designed specifically for the mainframe server in the 1970s. The 
@@ -406,14 +433,14 @@ as LAMP, Rails, Django, PHP and other technologies.
 <h2>當數據更新時...</h2>
 
 <xmp defer>
-<div id="page">
+<body>
   <table>
     <tr>
       <td>1 + 1 = </td>
       <td id="result">?</td>
     </tr>
   </table>
-</div>
+</body>
 </xmp>
 
 <!--
@@ -423,7 +450,7 @@ Elaborate the case of how markup should be updated when the data changes.
 ===
 <h3>經由DOM操作來Rendering...</h3>
 <xmp>
-page.innerHTML = (
+body.innerHTML = (
   '<table>' +
   '  <tr>' +
   '    <td>1 + 1 = </td>' +
@@ -450,7 +477,7 @@ because:
 
 <h3>減少DOM層級的操作</h3>
 <xmp>
-result.innerHTML = '2';
+document.getElementById('result').innerHTML = '2';
 </xmp>
 
 <ul>
@@ -482,10 +509,29 @@ So who would React update the page?
   </li>
 
   <li defer>
-  不需要複雜的"Data Binding"
+  不需要額外的資料綁定（Data Binding)
   </li>
 </ul>
 
+===
+
+<h2>刷新 Component</h2>
+<xmp>
+var ii = 0; 
+
+setInterval(function() {  
+  React.renderComponent(
+    <Counter count={ii++} />, 
+    document.body
+  );
+}, 1000);
+</xmp>  
+
+>>>
+
+<iframe src="examples/blank.html" name="counter"></iframe>
+<a href="examples/counter.html" target="counter">start</a> |
+<a href="examples/blank.html" target="counter">clear</a>
 ===
 
 <h2>Will it work?</h2>
@@ -497,7 +543,6 @@ So who would React update the page?
 <ul>
 <li defer>用JavaScript打造的虛擬DOM Tree</li>
 <li defer>避免Reflow</li>
-<li defer>支持Events管理</li>
 </ul>
 
 <!--
@@ -517,7 +562,6 @@ Introduce the concept of the Virtual DOM in React.
 <!--
 Explains how Virtual DOM works.
 -->
-
 
 ===
 
@@ -540,10 +584,11 @@ var Counter = React.createClass({
 </xmp>
 <xmp>
 var ii = 0;  
+
 setInterval(function() {
   React.renderComponent(
     <Counter count={ii++} />,
-    document.getElementById('renderTarget')
+    document.body
   );
 }, 1000);
 </xmp>
@@ -622,6 +667,15 @@ var Hello = React.createClass({
 });
 </xmp>
 
+===
+
+<h2>Event</h2>
+<ul>
+  <li>Synthetic</li>
+  <li>Standard Compliant</li>  
+  <li>由Virtual DOM處理</li>
+</ul>  
+
 <!--
 Explains how Events works in React:
 1. It uses event delegation for performance.
@@ -653,13 +707,8 @@ List of external resources.
 
 <h2>DEMO</h2>
 
-<ul>
-<li>React JS Fiddler</li>  
-<li>Todo List</li>
-<li>Simple Clock</li>
-<li>Wolfenstein3D-react </li>
-<li>React VS Angular</li>
-</ul> 
+<a href="/examples/index.html">...</a>
+
 <!--
 List of examples and DEMOs.
 -->
